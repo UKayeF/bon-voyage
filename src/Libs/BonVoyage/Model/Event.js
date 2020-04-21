@@ -48,7 +48,7 @@ export default class Event {
     }
 
     /* Trigger these actions */
-    
+
     @action static nothingAction(store, event, action){
         store.pastEvents.push(
             {time: store.playerFleet.timeUnit, message:"Something happened in the way",type:'info'}
@@ -86,7 +86,7 @@ export default class Event {
                 break;
         }
     }
-    
+
     @action static stealBattleAction(store, event, action){
         event.validActions.negotiate = false;
         event.validActions.attack = false;
@@ -262,7 +262,7 @@ export default class Event {
                             });
                         }
                         store.changeState(GameState.states.space);
-                    }, 5000);
+                    }, 500);
                     break;
                 case BattleManager.LOST:
                     if(choice=='attack'){
@@ -301,7 +301,7 @@ export default class Event {
                             });
                         }
                         store.changeState(GameState.states.space);
-                    }, 5000);
+                    }, 1000);
                     break;
                 default:
                     console.log("Event error", result);
