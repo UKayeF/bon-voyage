@@ -24,7 +24,7 @@ class AppStore {
     playerFleet = new PlayerFleet();
     enemyFleet = new Fleet();
     currentPlanet = new Planet();
-    
+
     landMarks = LandMark.defaultList.slice(0);
     gameLoop = new GameLoop();
 
@@ -88,7 +88,7 @@ class AppStore {
             this.landMarks[i].visited = false;
         }
     }
-    
+
     randomEvent(){
         if(this.currentState==GameState.states.event){
             return;
@@ -108,7 +108,7 @@ class AppStore {
         });
         this.playerFleet.spaceCredits += this.currentEvent.spaceCredits;
     }
-    
+
     calcEventProbability(){
         /* TODO: make it easier for slow fleets */
         return EventManager.EVENT_PROBABILITY;
@@ -137,7 +137,7 @@ class AppStore {
         if(fleet.distance < step){
             fleet.distance = 0;
             //Congratulations!!
-            //this.showEnding(GameState.endings.success);
+            this.showEnding(GameState.endings.success);
             return;
         } else {
             fleet.distance -= step;
