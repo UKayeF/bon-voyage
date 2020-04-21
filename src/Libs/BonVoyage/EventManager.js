@@ -8,7 +8,7 @@ import Event from './Model/Event';
 
 export default class EventManager {
 
-    static EVENT_PROBABILITY = 0.15;
+    static EVENT_PROBABILITY = 0.75;
 
     static types = {
         'supernova': {
@@ -450,16 +450,16 @@ export default class EventManager {
     getRandomEventId(){
         const rn = Math.random();
 
-        if(rn < 0.01){ return 'supernova'; }
-        if(rn < 0.02){ return 'black-hole'; }
-        if(rn < 0.06){ return 'remove-ships'; }
-        if(rn < 0.11){ return 'remove-space-credits'; }
-        if(rn < 0.17){ return 'add-space-credits'; }
-        if(rn < 0.22){ return 'remove-resource'; }
-        if(rn < 0.28){ return 'add-ships'; }
-        if(rn < 0.36){ return 'add-resource'; }
-        if(rn < 0.42){ return 'slow-down'; }
-        if(rn < 0.50){ return 'speed-up'; }
+        // if(rn < 0.01){ return 'supernova'; }
+        // if(rn < 0.02){ return 'black-hole'; }
+        // if(rn < 0.06){ return 'remove-ships'; }
+        // if(rn < 0.0011){ return 'remove-space-credits'; }
+        // if(rn < 0.0017){ return 'add-space-credits'; }
+        // if(rn < 0.0022){ return 'remove-resource'; }
+        // if(rn < 0.28){ return 'add-ships'; }
+        // if(rn < 0.36){ return 'add-resource'; }
+        // if(rn < 0.42){ return 'slow-down'; }
+        // if(rn < 0.50){ return 'speed-up'; }
         if(rn < 0.60){ return 'steal-battle'; }
 
         let amBombers = this.store.playerFleet.shipsExpanded['211'].amount,
@@ -498,11 +498,12 @@ export default class EventManager {
     }
 
     static getMaxProbableShipTypeCount(distance, maxDistance, extra=1){
-        return Math.ceil(((maxDistance - distance)/maxDistance) * 10) + extra;
+        return 20;
     }
 
     static getMaxProbableShipAmount(distance, maxDistance){
-        return Math.ceil(((maxDistance - distance)/maxDistance) * 40) + 10;
+        const xpLevel = 1.09 ** ((maxDistance - distance)/1500);
+        return Math.max(xpLevel * 80);
     }
 
     static getRandomEnemy(){
