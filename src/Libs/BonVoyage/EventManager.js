@@ -502,7 +502,7 @@ export default class EventManager {
     }
 
     static getMaxProbableShipAmount(distance, maxDistance){
-        const xpLevel = 1.09 ** ((maxDistance - distance)/1500);
+        const xpLevel = 1.09 ** ((maxDistance - distance)/10000);
         return Math.max(xpLevel * 80);
     }
 
