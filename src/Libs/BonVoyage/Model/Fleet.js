@@ -28,6 +28,9 @@ class Fleet {
         @observable '213':{amount:0,changes:0}, //Destroyer
         @observable '214':{amount:0,changes:0}, //Death star
         @observable '215':{amount:0,changes:0}, //Battle cruiser
+        @observable '216':{amount:0,changes:0}, //Lune Noire
+        @observable '217':{amount:0,changes:0}, //Evolution Transporter
+        @observable '218':{amount:0,changes:0}, //Star Destroyer
         @observable '401':{amount:0,changes:0}, //rocket launcher
         @observable '402':{amount:0,changes:0}, //Light laser
         @observable '403':{amount:0,changes:0}, //heavy laser
