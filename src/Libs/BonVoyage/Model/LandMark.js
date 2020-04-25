@@ -93,6 +93,15 @@ class LandMark {
                 return {state: GameState.states.planet, data: Planet.planets["tau-wg"]};
             }
         },
+        {distance: 150000,
+        visited: false,
+        mapData: {"id": "alpha-centauri", "symbol": "A", className: "text-info"}
+        action: function (store) {
+            return {state: GameState.states.planet, data: Planet.planets["alpha-centauri"]};
+
+        }
+        },
+
         {
             distance: 5000,
             visited: false,
