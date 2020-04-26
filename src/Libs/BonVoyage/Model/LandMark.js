@@ -38,13 +38,13 @@ class LandMark {
                                     event.description =
                                         'We traded the ships. The probe came with a strange artifact that is being reviewed by our engineers';
                                     store.pastEvents.push({time:store.playerFleet.timeUnit,
-                                        message:"Got a very special Esp. Probe","type":'info'});
+                                        message:'Got a very special Esp. Probe','type':'info'});
 
                                     break;
                                 case 'skip':
                                 default:
                                     store.pastEvents.push({time:store.playerFleet.timeUnit,
-                                        message:"Met a friendly caravan in the way","type":'info'});
+                                        message:'Met a friendly caravan in the way','type':'info'});
                                     event.description = 'We rejected the proposal due to a lack of Colony Ships in the area';
                                     break;
                             }
@@ -80,25 +80,24 @@ class LandMark {
         {
             distance: 74200,
             visited: false,
-            mapData: {"id":"onigiri","symbol":"Ů","className":"text-info"},
+            mapData: {'id':'onigiri','symbol':'Ů','className':'text-info'},
             action: function(store) {
-                return {state: GameState.states.planet, data: Planet.planets["onigiri"]};
+                return {state: GameState.states.planet, data: Planet.planets['onigiri']};
             }
         },
         {
             distance: 25800,
             visited: false,
-            mapData: {"id":"tau-wg","symbol":"Φ","className":"text-info"},
+            mapData: {'id':'tau-wg','symbol':'Φ','className':'text-info'},
             action: function(store) {
-                return {state: GameState.states.planet, data: Planet.planets["tau-wg"]};
+                return {state: GameState.states.planet, data: Planet.planets['tau-wg']};
             }
         },
         {distance: 150000,
         visited: false,
-        mapData: {"id": "alpha-centauri", "symbol": "A", className: "text-info"}
+        mapData: {'id': 'alpha-centauri', 'symbol': 'A', className: 'text-info'},
         action: function (store) {
-            return {state: GameState.states.planet, data: Planet.planets["alpha-centauri"]};
-
+            return {state: GameState.states.planet, data: Planet.planets['alpha-centauri']};
         }
         },
 
@@ -121,13 +120,13 @@ class LandMark {
                                     store.playerFleet.updateShipAmountAndStats('214', 1, window.bvConfig.shipData);
                                     event.description = 'Darth Vader\'s ship was a Hologram. But... is that a moon?';
                                     store.pastEvents.push({time:store.playerFleet.timeUnit,
-                                        message:"Darth Vader gave us a gift","type":'success'});
+                                        message:'Darth Vader gave us a gift','type':'success'});
                                     break;
                                 case 'flee':
                                 default:
                                     event.description = 'Darth Vader realizes Luke is not with us, and then we flee!';
                                     store.pastEvents.push({time:store.playerFleet.timeUnit,
-                                        message:"We escaped from Darth Vader!","type":'info'});
+                                        message:'We escaped from Darth Vader!','type':'info'});
                                     break;
                             }
                             setTimeout(function(){
@@ -164,9 +163,9 @@ class LandMark {
         {
             distance: 0.000001,
             visited: false,
-            mapData: {"id":"omega","symbol":"Ω","className":"text-success"},
+            mapData: {'id':'omega','symbol':'Ω','className':'text-success'},
             action: function(store){
-                console.log("Ending!!");
+                console.log('Ending!!');
                 return {state: GameState.states.goodEnding};
             }
         }
