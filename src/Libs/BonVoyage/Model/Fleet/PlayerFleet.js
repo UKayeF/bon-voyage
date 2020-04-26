@@ -199,7 +199,7 @@ class PlayerFleet extends Fleet {
             }
 
             capacity += this.shipsExpanded[id].amount * currentPriceList.capacity;
-            slowest = Math.min(new_speed, slowest);
+            slowest = Math.max(Math.min(new_speed, slowest), 1000);
             shipListExtra[id] = {speed: new_speed, consumption: new_consumption};
         }
 
@@ -344,8 +344,9 @@ class PlayerFleet extends Fleet {
 
     static calcConsumption(distance, duration, speed, amount, consumption){
         const consumptionDivisor = 35000
-        var av = (consumptionDivisor / (duration - 10) ) * Math.sqrt(distance * 10 / speed);
-        return Math.round( ((amount * consumption * distance )/consumptionDivisor * Math.pow(av/ 10 + 1, 2 )) * 2);
+          const distanceCoefficient = 0.00001;
+        var av = (consumptionDivisor / (duration - 10) ) * Math.sqrt(distance * 10 * distanceCoefficient / speed);
+        return Math.round( ((amount * +consumption * distance * distanceCoefficient )/consumptionDivisor * Math.pow(av/ 10 + 1, 2 )) * 2);
     }
     
 }
