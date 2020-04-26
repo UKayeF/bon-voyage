@@ -343,8 +343,9 @@ class PlayerFleet extends Fleet {
     }
 
     static calcConsumption(distance, duration, speed, amount, consumption){
-        var av = (35000 / (duration - 10) ) * Math.sqrt(distance * 10 / speed);
-        return Math.round( ((amount * consumption * distance )/35000 * Math.pow(av/ 10 + 1, 2 )) * 2);
+        const consumptionDivisor = 35000
+        var av = (consumptionDivisor / (duration - 10) ) * Math.sqrt(distance * 10 / speed);
+        return Math.round( ((amount * consumption * distance )/consumptionDivisor * Math.pow(av/ 10 + 1, 2 )) * 2);
     }
     
 }
