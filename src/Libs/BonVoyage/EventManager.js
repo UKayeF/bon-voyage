@@ -570,7 +570,7 @@ export default class EventManager {
                 else if (idx == '220'){
                     realFleet[idx] = EventManager.randomIntFromInterval(1, maxProbableHeavyShipCount);
                 }
-                else if (idx == '216'){
+                else if (idx == '216' || idx == '214'){
                     realFleet[idx] = EventManager.randomIntFromInterval(0, maxProbableSuperHeavyShipCount);
                 }
                 else {
