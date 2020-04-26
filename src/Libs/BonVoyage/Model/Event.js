@@ -79,6 +79,16 @@ export default class Event {
                 break;
             case 'flee':
                 if(Math.random() > 0.5){
+                    //TODO consider fleet speed difference
+                    function fleeChance(fleetSpeed, enemyFleetSpeed){
+                        /**
+                         * same speed -> 0.5
+                         * fleet faster by 1000 -> 0.75
+                         * fleet faster by 2000 -> 0.875
+                         */
+                        return 1/Math.pow(2, (fleetSpeed - enemyFleetSpeed) / 1000);
+                    }
+
                     Event.handleFleeEvent(store, null);
                 } else {
                     Event.handleBattleEvent(store, action);
