@@ -2,9 +2,9 @@ import { observable, action } from 'mobx';
 
 class HeadQuarters {
 
-    static defaultMetal = 50000000;
-    static defaultCrystal = 40000000;
-    static defaultDeuterium = 10000001;
+    static defaultMetal = 5000000;
+    static defaultCrystal = 4000000;
+    static defaultDeuterium = 1000001;
 
     @observable metal = 0;
     @observable crystal = 0;
