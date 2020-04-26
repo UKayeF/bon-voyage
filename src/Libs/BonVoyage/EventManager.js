@@ -8,7 +8,7 @@ import Event from './Model/Event';
 
 export default class EventManager {
 
-    static EVENT_PROBABILITY = 0.75;
+    static EVENT_PROBABILITY = 0.35;
 
     static types = {
         'supernova': {
@@ -502,8 +502,8 @@ export default class EventManager {
     }
 
     static getMaxProbableShipAmount(distance, maxDistance){
-        const xpLevel = 1.09 ** ((maxDistance - distance)/20000);
-        return Math.max(xpLevel * 80);
+        const xpLevel = 1.09 ** ((maxDistance - distance)/10000);
+        return Math.max(xpLevel * 80, 1);
     }
 
     static getRandomEnemy(){
