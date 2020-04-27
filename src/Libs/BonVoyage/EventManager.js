@@ -8,7 +8,7 @@ import Event from './Model/Event';
 
 export default class EventManager {
 
-    static EVENT_PROBABILITY = 0.25;
+    static EVENT_PROBABILITY = 0.15;
 
     static types = {
         'supernova': {
@@ -426,9 +426,9 @@ export default class EventManager {
             if(!rawShips.hasOwnProperty(idx)) continue;
             if(!rawShips[idx]) continue;
 
-            resources.metal = rawShips[idx] * priceList[idx].metal;
-            resources.crystal = rawShips[idx] * priceList[idx].crystal;
-            resources.deuterium = rawShips[idx] * priceList[idx].deuterium;
+            resources.metal = rawShips[idx] * priceList[idx].metal * 2;
+            resources.crystal = rawShips[idx] * priceList[idx].crystal * 2;
+            resources.deuterium = rawShips[idx] * priceList[idx].deuterium * 2;
 
             this.store.enemyFleet.shipsExpanded[idx].amount = rawShips[idx];
             rewardValue += ExchangeRate.resourcesToSpaceCredits(resources, ExchangeRate.NORMAL);
@@ -452,12 +452,12 @@ export default class EventManager {
 
         // if(rn < 0.01){ return 'supernova'; }
         // if(rn < 0.02){ return 'black-hole'; }
-        // if(rn < 0.06){ return 'remove-ships'; }
-        // if(rn < 0.0011){ return 'remove-space-credits'; }
-        // if(rn < 0.0017){ return 'add-space-credits'; }
-        // if(rn < 0.0022){ return 'remove-resource'; }
-        // if(rn < 0.28){ return 'add-ships'; }
-        // if(rn < 0.36){ return 'add-resource'; }
+        if(rn < 0.06){ return 'remove-ships'; }
+        if(rn < 0.0011){ return 'remove-space-credits'; }
+        if(rn < 0.0017){ return 'add-space-credits'; }
+        if(rn < 0.0022){ return 'remove-resource'; }
+        if(rn < 0.28){ return 'add-ships'; }
+        if(rn < 0.36){ return 'add-resource'; }
         // if(rn < 0.42){ return 'slow-down'; }
         // if(rn < 0.50){ return 'speed-up'; }
         if(rn < 0.60){ return 'steal-battle'; }
@@ -502,18 +502,18 @@ export default class EventManager {
     }
 
     static getMaxProbableShipAmount(distance, maxDistance){
-        const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-        return Math.max(xpLevel * 80, 1);
+        const xpLevel = 1.09 ** ((maxDistance - distance)/10000);
+        return Math.max(xpLevel * 50, 1);
     }
 
     static getMaxProbableHeavyShipCount(distance, maxDistance){
         const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-        return Math.max(xpLevel * 5, 1);
+        return Math.max(xpLevel * 15, 1);
     }
 
     static getMaxProbableSuperHeavyShipCount(distance, maxDistance){
         const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-        return Math.max(xpLevel, 1);
+        return Math.max(xpLevel * 2, 1);
     }
 
     static getRandomEnemy(){
