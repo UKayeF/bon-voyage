@@ -23,7 +23,9 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'template.html',
+    }),
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx']
