@@ -4,7 +4,8 @@
   "description": "Boilerplate for MobX + React project with JSX, ES6 compilation and hot code reloading",
   "scripts": {
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.9.4",
     "axios": "^0.19.2",
+    "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "mobx": "^2.2.2",
     "mobx-react": "^3.3.1",
