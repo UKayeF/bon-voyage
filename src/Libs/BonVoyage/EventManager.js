@@ -178,7 +178,7 @@ export default class EventManager {
                 enemy = EventManager.getRandomEnemy();
 
                 this.store.enemyFleet.assignTechs(enemy.techs);
-                event.spaceCredits = (this.calcRewardValueAndAssing(rawShips, enemy.type) * 2) | 0;
+                event.spaceCredits = (this.calcRewardValueAndAssing(rawShips, enemy.type) * 5) | 0;
                 event.description = event.description.replace('%c', enemy.name);
 
                 this.after = Event.raidPlanetAction;
@@ -426,22 +426,21 @@ export default class EventManager {
             if(!rawShips.hasOwnProperty(idx)) continue;
             if(!rawShips[idx]) continue;
 
-            resources.metal = rawShips[idx] * priceList[idx].metal * 2;
-            resources.crystal = rawShips[idx] * priceList[idx].crystal * 2;
-            resources.deuterium = rawShips[idx] * priceList[idx].deuterium * 2;
+            resources.metal = rawShips[idx] * priceList[idx].metal;
+            resources.crystal = rawShips[idx] * priceList[idx].crystal;
+            resources.deuterium = rawShips[idx] * priceList[idx].deuterium;
 
             this.store.enemyFleet.shipsExpanded[idx].amount = rawShips[idx];
             rewardValue += ExchangeRate.resourcesToSpaceCredits(resources, ExchangeRate.NORMAL);
         }
         switch(type){
             case 'pirates':
-                rewardValue = rewardValue / 2.5;
+                rewardValue = rewardValue / 1.25;
                 break;
             case 'scourge':
-                rewardValue = rewardValue / 2;
                 break;
             case 'quadrant-12':
-                rewardValue = rewardValue / 1.5;
+                rewardValue = rewardValue / 0.75;
                 break;
         }
         return rewardValue;
@@ -460,7 +459,7 @@ export default class EventManager {
         if(rn < 0.36){ return 'add-resource'; }
         // if(rn < 0.42){ return 'slow-down'; }
         // if(rn < 0.50){ return 'speed-up'; }
-        if(rn < 0.60){ return 'steal-battle'; }
+        if(rn < 0.40){ return 'steal-battle'; }
 
         let amBombers = this.store.playerFleet.shipsExpanded['211'].amount,
             amRecyclers = this.store.playerFleet.shipsExpanded['209'].amount;
@@ -475,11 +474,11 @@ export default class EventManager {
                 return 'add-resource';
             }
         } else if(amBombers){
-            if(rn < 0.70){
+            if(rn < 0.80){
                 return 'raid-planet';
             }
         } else if(amRecyclers){
-            if(rn < 0.70){
+            if(rn < 0.80){
                 return 'add-resource';
             }
         }
@@ -502,7 +501,7 @@ export default class EventManager {
     }
 
     static getMaxProbableShipAmount(distance, maxDistance){
-        const xpLevel = 1.09 ** ((maxDistance - distance)/10000);
+        const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
         return Math.max(xpLevel * 50, 1);
     }
 
@@ -512,8 +511,8 @@ export default class EventManager {
     }
 
     static getMaxProbableSuperHeavyShipCount(distance, maxDistance){
-        const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-        return Math.max(xpLevel * 2, 1);
+        const xpLevel = 1.09 ** ((maxDistance - distance)/10000);
+        return Math.max(xpLevel * 3, 1);
     }
 
     static getRandomEnemy(){
