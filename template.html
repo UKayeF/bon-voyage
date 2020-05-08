@@ -5,6 +5,7 @@
     <link href="../styles/app.css" rel="stylesheet">
     <link href="../styles/bootstrap.borrowed.css" rel="stylesheet"/>
     <link href="../styles/cyborg.css" rel="stylesheet"/>
+    <link rel="manifest" href="/manifest.json"/>
 </head>
 <body>
 <div class="container">
@@ -596,4 +597,15 @@
 <script src="../scripts/jquery.min.js"></script>
 <script src="../scripts/bootstrap.min.js"></script>
 </body>
+<script>
+  if ('serviceWorker' in navigator) {
+    console.log("Will the service worker register?");
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("Yes, it did.");
+      }).catch(function(err) {
+      console.log("No it didn't. This happened: ", err)
+    });
+  }
+</script>
 </html>
