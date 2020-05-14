@@ -21,11 +21,11 @@
     display: inline-flex;
 }
 
-.ships > div {
+.ships {
     background-position-y: calc(var(--image-width) * -15);
 }
 
-.defense > div {
+.defense {
     background-position-y: calc(var(--image-width) * -10);
 }
 
