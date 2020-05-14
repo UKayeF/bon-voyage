@@ -1,103 +1,98 @@
 :root {
-	--image-width: 200px;
+    --image-width: 48px;
+    --total-height: 6000px;
+    --total-width: 4000px;
+    --img_lg-size: 200px;
+    --img_md-size: 100px;
+    --img_sm-size: 80px;
+    --img_xs-size: 32px;
+    --scale: calc(var(--image-width) / var(--img_lg-size));
 }
 
 .img {
-	background-image: url('../img/spritesheet.jpg');
-	background-repeat: no-repeat;
-	height: var(--image-width);
-	width: var(--image-width);
-	object-fit: scale-down;
-		-moz-transform:scale(0.32);
-  /* 	hack to enable image downscaling */
-	margin: -16px -120px -120px -16px; /* 16 + 120 + 64 = 200 */
-	-moz-transform-origin: 0 0;
-	zoom: 0.32;
-	
+    background-image: url('./img/spritesheet.jpg');
+    background-repeat: no-repeat;
+    background-size: calc(var(--total-width) * var(--scale)) calc(var(--total-height) * var(--scale));
+    height: var(--image-width);
+    width: var(--image-width);
 }
 
 .ships, .defense {
-	display: inline-flex;
+    display: inline-flex;
 }
 
-
 .ships > div {
-	background-position-y: calc(var(--image-width) * -15);
+    background-position-y: calc(var(--image-width) * -15);
 }
 
 .defense > div {
-	background-position-y: calc(var(--image-width) * -10);
+    background-position-y: calc(var(--image-width) * -10);
 }
-
-.ships > h2, .defense > h2 {
-	margin: 16px 120px;
-}
-
 
 .light-fighter, .rocket-launcher {
-	background-position-x: 0px;
+    background-position-x: 0;
 }
 
 .heavy-fighter, .light-laser {
-	background-position-x: calc(var(--image-width) * -1);
+    background-position-x: calc(var(--image-width) * -1);
 }
 
 .cruiser, .heavy-laser {
-	background-position-x: calc(var(--image-width) * -2);
+    background-position-x: calc(var(--image-width) * -2);
 }
 
 .battleship, .gauss-cannon {
-	background-position-x: calc(var(--image-width) * -3);
+    background-position-x: calc(var(--image-width) * -3);
 }
 
 .battlecruiser, .ion-cannon {
-  background-position-x: calc(var(--image-width) * -4);
+    background-position-x: calc(var(--image-width) * -4);
 }
 
 .bomber, .plasma-launcher {
-	background-position-x: calc(var(--image-width) * -5);
+    background-position-x: calc(var(--image-width) * -5);
 }
 
 .destroyer, .small-shield-dome {
-	background-position-x: calc(var(--image-width) * -6);
+    background-position-x: calc(var(--image-width) * -6);
 }
 
 .death-star, .large-shield-dome {
-	background-position-x: calc(var(--image-width) * -7);
+    background-position-x: calc(var(--image-width) * -7);
 }
 
 .small-cargo, .defense-missile {
-	background-position-x: calc(var(--image-width) * -8);
+    background-position-x: calc(var(--image-width) * -8);
 }
 
 .large-cargo, .interplanetary-missile {
-	background-position-x: calc(var(--image-width) * -9);
+    background-position-x: calc(var(--image-width) * -9);
 }
 
 .colony-ship {
-	background-position-x: calc(var(--image-width) * -10);
+    background-position-x: calc(var(--image-width) * -10);
 }
 
 .recycler {
-	background-position-x: calc(var(--image-width) * -11);
+    background-position-x: calc(var(--image-width) * -11);
 }
 
 .espionage-probe {
-	background-position-x: calc(var(--image-width) * -12);
+    background-position-x: calc(var(--image-width) * -12);
 }
 
 .solar-satellite {
-	background-position-x: calc(var(--image-width) * -13);
+    background-position-x: calc(var(--image-width) * -13);
 }
 
 .reaper {
-	background-position-x: calc(var(--image-width) * -14);
+    background-position-x: calc(var(--image-width) * -14);
 }
 
 .pathfinder {
-	background-position-x: calc(var(--image-width) * -15);
+    background-position-x: calc(var(--image-width) * -15);
 }
 
 .crawler {
-	background-position-x: calc(var(--image-width) * -16);
+    background-position-x: calc(var(--image-width) * -16);
 }
