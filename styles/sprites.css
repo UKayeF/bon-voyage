@@ -3,7 +3,7 @@
 }
 
 .img {
-	background-image: url('../img/spritesheetjpg.jpg');
+	background-image: url('../img/spritesheet.jpg');
 	background-repeat: no-repeat;
 	height: var(--image-width);
 	width: var(--image-width);
