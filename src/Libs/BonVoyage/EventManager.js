@@ -448,37 +448,42 @@ export default class EventManager {
 
     getRandomEventId(){
         const rn = Math.random();
+        const pathfinderCount = this.store.playerFleet.shipsExpanded['222'].amount;
+        const pathfinderBias = 1/(1+ Math.exp(pathfinderCount / -10)) - 0.5; // between 0 and 0.5
+        const goodEvent = rn + pathfinderBias > 0.8;
 
-        // if(rn < 0.01){ return 'supernova'; }
-        // if(rn < 0.02){ return 'black-hole'; }
-        if(rn < 0.06){ return 'remove-ships'; }
-        if(rn < 0.0011){ return 'remove-space-credits'; }
-        if(rn < 0.0017){ return 'add-space-credits'; }
-        if(rn < 0.0022){ return 'remove-resource'; }
-        if(rn < 0.28){ return 'add-ships'; }
-        if(rn < 0.36){ return 'add-resource'; }
-        // if(rn < 0.42){ return 'slow-down'; }
-        // if(rn < 0.50){ return 'speed-up'; }
-        if(rn < 0.40){ return 'steal-battle'; }
+        if (goodEvent){
+            if(rn - pathfinderBias < 0.12){ return 'add-ships'; } // 12%
+            if(rn - pathfinderBias < 0.24){ return 'add-resource'; } // 12%
+            if(rn - pathfinderBias < 0.36){ return 'add-space-credits'; } // 12%
+        }
+        else {
+            if(rn < 0.01){ return 'supernova'; } // 1%
+            if(rn < 0.02){ return 'black-hole'; } // 1%
+            if(rn < 0.06){ return 'remove-ships'; } // 4%
+            if(rn < 0.11){ return 'remove-space-credits'; } // 5%
+            if(rn < 0.16){ return 'remove-resource'; } // 5%
+            if(rn < 0.21){ return 'steal-battle'; }
+        }
 
+        // "neutral events"
         let amBombers = this.store.playerFleet.shipsExpanded['211'].amount,
-            amRecyclers = this.store.playerFleet.shipsExpanded['209'].amount;
-
+          amRecyclers = this.store.playerFleet.shipsExpanded['209'].amount;
         //Bombers bring raid battles with them
         //If you have recyclers in your fleet, you will get more resources than normal
-        if(amBombers && amRecyclers){
-            if(rn < 0.70){
+        if (amBombers && amRecyclers) {
+            if (rn < 0.70) {
                 return 'raid-planet';
             }
-            if(rn < 0.80){
+            if (rn < 0.80) {
                 return 'add-resource';
             }
-        } else if(amBombers){
-            if(rn < 0.80){
+        } else if (amBombers) {
+            if (rn < 0.80) {
                 return 'raid-planet';
             }
-        } else if(amRecyclers){
-            if(rn < 0.80){
+        } else if (amRecyclers) {
+            if (rn < 0.80) {
                 return 'add-resource';
             }
         }
