@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
+import {getIconType, makeCSSName, shipsToCode} from '../../utils/shipCodeMap';
 
 @observer
 class SelectorItemComponent extends Component {
@@ -7,11 +8,15 @@ class SelectorItemComponent extends Component {
     render() {
         const shipId = this.props.shipId;
         const imgUrl = window.bvConfig.iconPath+shipId+'.gif';
-        
+        const shipName = makeCSSName(shipsToCode.get(parseInt(shipId)));
+        const iconType = getIconType(parseInt(shipId));
+        const className = `img ${iconType} ${shipName}`
+
         return (
             <td>
                 <span className="name">{this.props.shipData.name}</span>
-                <img src={imgUrl} height="48" width="48" />
+                <div className={className}></div>
+                {/*<img src={imgUrl} height="48" width="48" />*/}
                 <span className="text-info">{this.props.shipsExpanded[shipId].amount}</span>
                 <table className="mini-buttons" cellPadding="0" cellSpacing="0">
                     <tbody>

@@ -4,15 +4,15 @@ class Fleet {
 
     static unitLimit = 999;
 
-    static allBattleFleet = [202,203,204,205,206,207,208,209,210,211,213,214,215,216, 217, 218, 219, 220, 401,402,403,404,405,406,407,408];
-    static allFleet = [202,203,204,205,206,207,208,209,210,211,213,214,215, 216, 217, 218,219,  220,401,402,403,404,405,406,407,408,502,503];
+    static allBattleFleet = [202,203,204,205,206,207,208,209,210,211,213,214,215,216, 217, 218, 219, 220, 221, 222, 401,402,403,404,405,406,407,408];
+    static allFleet = [202,203,204,205,206,207,208,209,210,211,213,214,215, 216, 217, 218,219,  220, 221, 222, 401,402,403,404,405,406,407,408,502,503];
     static validResearchLabTechs = [109,110,111,115,117,118];
     static validTechs = [109,110,111,115,117,118,124];
 
-    static validShips = [202,203,204,205,206,207,208,209,210,211,213,214,215,216, 217, 218, 219, 220];
-    static validEnemyShips = [210,204,205,202,206,207,211,203,215,213, 220, 214, 216]; //Sorted
+    static validShips = [202,203,204,205,206,207,208,209,210,211,213,214,215,216, 217, 218, 219, 220, 221, 222];
+    static validEnemyShips = [210,204,205,202,206,207,211,203,215,213, 220, 214]; //Sorted
     static validEnemyDefense = [401,402,403,405,407,404,408,406]; //Sorted
-    static validConstructibleShips = [202,203,204,205,206,207,209,210,211,213, 214 ,215, 216, 217, 218,219,  220];
+    static validConstructibleShips = [202,203,204,205,206,207,209,210,211,213, 214 ,215, 221, 222];
 
     shipsExpanded = {
         @observable '202':{amount:0,changes:0}, //light cargo
@@ -33,6 +33,9 @@ class Fleet {
         @observable '218':{amount:0,changes:0}, //Star Destroyer
         @observable '219':{amount:0,changes:0}, //Aurora
         @observable '220':{amount:0,changes:0}, //Super Destroyer
+        @observable '221':{amount:0,changes:0}, //Reaper
+        @observable '222':{amount:0,changes:0}, //Pathfinder
+        @observable '223':{amount:0,changes:0}, //Crawler
         @observable '401':{amount:0,changes:0}, //rocket launcher
         @observable '402':{amount:0,changes:0}, //Light laser
         @observable '403':{amount:0,changes:0}, //heavy laser
