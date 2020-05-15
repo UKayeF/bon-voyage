@@ -500,9 +500,14 @@ export default class EventManager {
         return 20;
     }
 
+    static getMaxProbableLightShipAmount(distance, maxDistance){
+        const xpLevel = 1.09 ** ((maxDistance - distance)/12000);
+        return Math.max(xpLevel * 50, 1);
+    }
+
     static getMaxProbableShipAmount(distance, maxDistance){
         const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-        return Math.max(xpLevel * 50, 1);
+        return Math.max(xpLevel * 20, 1);
     }
 
     static getMaxProbableHeavyShipCount(distance, maxDistance){
@@ -538,17 +543,20 @@ export default class EventManager {
 
     static getRandomShips(distance, maxDistance, type='battle'){
         let maxProbableShipType, pickableFleet, maxProbableShipTypeCount;
-        let maxProbableHeavyShipCount, maxProbableSuperHeavyShipCount;
+        let maxProbableLightShipTypeCount, maxProbableHeavyShipCount, maxProbableSuperHeavyShipCount;
 
         if(type=='battle'){
             maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyShips.length, distance, maxDistance);
             pickableFleet = Fleet.validEnemyShips.slice(0, maxProbableShipType-1);
+            maxProbableLightShipTypeCount = EventManager.getMaxProbbleLightShipAmount(distance, maxDistance, 1);
             maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
             maxProbableHeavyShipCount = EventManager.getMaxProbableHeavyShipCount(distance, maxDistance, 1);
             maxProbableSuperHeavyShipCount = EventManager.getMaxProbableSuperHeavyShipCount(distance, maxDistance, 1);
         } else {
             maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyDefense.length, distance, maxDistance);
             pickableFleet = Fleet.validEnemyDefense.slice(0, maxProbableShipType-1);
+            maxProbableLightShipTypeCount = EventManager.getMaxProbbleLightShipAmount(distance, maxDistance, 1);
+            maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
             maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
         }
 
@@ -565,6 +573,10 @@ export default class EventManager {
             if(!realFleet[idx]){
                 if(idx=='407' || idx=='408') {
                     realFleet[idx] = 1;
+                }
+                else if (['202', '203', '204', '205', '206', '401', '402', '403', '405']
+                  .some(value => value == idx)){
+                    realFleet[idx] = EventManager.randomIntFromInterval(1, maxProbableLightShipTypeCount)
                 }
                 else if (idx == '220'){
                     realFleet[idx] = EventManager.randomIntFromInterval(1, maxProbableHeavyShipCount);
