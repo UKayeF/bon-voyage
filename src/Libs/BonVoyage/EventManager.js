@@ -303,10 +303,21 @@ export default class EventManager {
                 break;
 
             case 'add-ships':
-                item = Math.floor(Math.random() * EventManager.validObtainableShipsArray.length);
-                idx = EventManager.validObtainableShipsArray[item];
-                ship_type = EventManager.validObtainableShips[idx];
-                amount = EventManager.randomIntFromInterval(ship_type.min, ship_type.max);
+                const pathfinderCount = this.store.playerFleet.shipsExpanded['222'].amount;
+                const randomShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'add-ships');
+                const pathfinderBias = 1 / (1 + Math.exp(pathfinderCount / -200)) - 0.5; // between 0 and 0.5
+                const pathfinderMultiplier = 9 * pathfinderBias + 1; // between 1 and 10
+
+                const randomShipList = Object.entries(randomShips);
+                const randomIndex = Math.floor(Math.random() * randomShipList.length);
+                const [additionalShipType, additionalShipAmount] = randomShipList[randomIndex];
+                amount = Math.ceil(additionalShipAmount * pathfinderMultiplier);
+                console.log(pathfinderMultiplier)
+
+                // item = Math.floor(Math.random() * EventManager.validObtainableShipsArray.length);
+                // idx = EventManager.validObtainableShipsArray[item];
+                // ship_type = EventManager.validObtainableShips[idx];
+                // amount = EventManager.randomIntFromInterval(ship_type.min, ship_type.max);
                 if (!amount) {
                     gameState = GameState.states.space;
                     this.store.pastEvents.push(
@@ -317,7 +328,8 @@ export default class EventManager {
                         });
                     break;
                 }
-                this.store.playerFleet.shipsExpanded[EventManager.validObtainableShipsArray[item]].changes = amount;
+                // this.store.playerFleet.shipsExpanded[EventManager.validObtainableShipsArray[item]].changes = amount;
+              this.store.playerFleet.shipsExpanded[additionalShipType].changes = amount;
 
                 this.after = Event.addShipsAction;
                 break;
@@ -456,7 +468,7 @@ export default class EventManager {
     getRandomEventId(){
         const rn = Math.random();
         const pathfinderCount = this.store.playerFleet.shipsExpanded['222'].amount;
-        const pathfinderBias = 1/(1+ Math.exp(pathfinderCount / -10)) - 0.5; // between 0 and 0.5
+        const pathfinderBias = 1/(1+ Math.exp(pathfinderCount / -200)) - 0.5; // between 0 and 0.5
         const goodEvent = rn + pathfinderBias > 0.8;
 
         if (goodEvent){
@@ -505,7 +517,7 @@ export default class EventManager {
 
     static getMaxProbableResourceAmount(distance, maxDistance){
         const xpLevel = 1.09 ** ((maxDistance - distance)/12000);
-        return Math.max(xpLevel * 10000, 1);
+        return Math.max(xpLevel * 70000, 1);
     }
 
     static getMaxProbableShipType(length, distance, maxDistance){
@@ -569,7 +581,16 @@ export default class EventManager {
             maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
             maxProbableHeavyShipCount = EventManager.getMaxProbableHeavyShipCount(distance, maxDistance, 1);
             maxProbableSuperHeavyShipCount = EventManager.getMaxProbableSuperHeavyShipCount(distance, maxDistance, 1);
-        } else {
+        }
+        if (type === 'add-ships'){
+            maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyShips.length, distance, maxDistance);
+            pickableFleet = Fleet.validEnemyShips.slice(0, maxProbableShipType-1);
+            maxProbableLightShipTypeCount = EventManager.getMaxProbableLightShipAmount(distance, maxDistance, 1) / 10;
+            maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1) / 10;
+            maxProbableHeavyShipCount = EventManager.getMaxProbableHeavyShipCount(distance, maxDistance, 1) / 10;
+            maxProbableSuperHeavyShipCount = EventManager.getMaxProbableSuperHeavyShipCount(distance, maxDistance, 1) / 10;
+        }
+        else {
             maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyDefense.length, distance, maxDistance);
             pickableFleet = Fleet.validEnemyDefense.slice(0, maxProbableShipType-1);
             maxProbableLightShipTypeCount = EventManager.getMaxProbableLightShipAmount(distance, maxDistance, 1);
