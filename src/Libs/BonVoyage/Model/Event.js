@@ -257,7 +257,7 @@ export default class Event {
                     }
 
                     setTimeout(() => {
-                        store.playerFleet.applyBattleResults(event, store);
+                        store.playerFleet.applyBattleResults();
                         if(event.type=='battle'){
                             store.pastEvents.push({
                                 time: store.playerFleet.timeUnit,
@@ -299,7 +299,7 @@ export default class Event {
                         event.description += " We got our resources back...";
                     }
                     setTimeout( () => {
-                        store.playerFleet.applyBattleResults(event, store);
+                        store.playerFleet.applyBattleResults();
                         if(event.type=='battle'){
                             store.pastEvents.push({
                                 time: store.playerFleet.timeUnit,

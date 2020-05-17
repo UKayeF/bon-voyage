@@ -227,10 +227,8 @@ class PlayerFleet extends Fleet {
         }
         this.setResources(this); //Update storage
     }
-    
-    @action applyBattleResults(event, store){
-      let [metal, crystal] = [0, 0];
 
+    @action applyBattleResults(){
         for(let i=0; i < Fleet.allFleet.length; i++) {
             const idx = Fleet.allFleet[i];
             if(!this.shipsExpanded[idx].changes) continue;
@@ -240,25 +238,8 @@ class PlayerFleet extends Fleet {
                 this.shipsExpanded[idx].amount + this.shipsExpanded[idx].changes,
                 window.bvConfig.shipData
             );
-            const [metalDebris, crystalDebris] = this.calcDebrisField(
-              idx,
-              this.shipsExpanded[idx].changes,
-              window.bvConfig.shipData
-            );
-            metal += metalDebris;
-            crystal += crystalDebris;
             this.shipsExpanded[idx].changes = 0;
         }
-        const amountReapers = this.shipsExpanded['221'].amount;
-        let reaperStorage = amountReapers * 10E3;
-
-        const harvestedCrystal = Math.min(reaperStorage, crystal);
-        reaperStorage -= harvestedCrystal;
-        const harvestedMetal = Math.min(reaperStorage, metal);
-
-        event.metal = harvestedMetal;
-        event.crystal = harvestedCrystal;
-        store.storeResources();
     }
 
     calcDebrisField(idx, amount, priceList){
