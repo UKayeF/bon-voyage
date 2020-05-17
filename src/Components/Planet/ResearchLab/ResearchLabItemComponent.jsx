@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { computed } from 'mobx';
 import ExchangeRate from '../../../Libs/BonVoyage/ExchangeRate';
+import {getIconType, makeCSSName, shipsToCode} from '../../../utils/shipCodeMap';
 
 @observer
 class ResearchLabItemComponent extends Component {
@@ -17,12 +18,17 @@ class ResearchLabItemComponent extends Component {
 
     render() {
         const techId = this.props.techId;
-        const imgUrl = window.bvConfig.iconPath+techId+'.gif';
+        // const imgUrl = window.bvConfig.iconPath+techId+'.gif';
+      const techName = makeCSSName(shipsToCode.get(parseInt(techId)));
+      const iconType = getIconType(parseInt(techId));
+      const className = `img ${iconType} ${techName}`
 
-        return (
+
+      return (
             <td>
                 <span className="name">{this.props.techData.name}</span>
-                <img src={imgUrl} height="48" width="48" />
+              <div className={className}></div>
+                {/*<img src={imgUrl} height="48" width="48" />*/}
                 <span className="text-info">{this.props.store.playerFleet.techs[techId]}</span><br />
                 <span className="text-warning">§ {this.currentPrice}</span>
                 <table className="mini-buttons" cellPadding="0" cellSpacing="0">
