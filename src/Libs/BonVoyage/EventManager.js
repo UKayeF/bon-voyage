@@ -631,6 +631,4 @@ export default class EventManager {
         return realFleet;
     }
 
-
-
 };
