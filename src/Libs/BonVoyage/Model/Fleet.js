@@ -10,7 +10,7 @@ class Fleet {
     static validTechs = [109,110,111,115,117,118,124];
 
     static validShips = [202,203,204,205,206,207,208,209,210,211,213,214,215,216, 217, 218, 219, 220, 221, 222];
-    static validEnemyShips = [210,204,205,202,206,207,211,203,215,213, 220, 214]; //Sorted
+    static validEnemyShips = [210,204,205,202,206,207,211,203,215,213]; //Sorted
     static validEnemyDefense = [401,402,403,405,407,404,408,406]; //Sorted
     static validConstructibleShips = [202,203,204,205,206,207,209,210,211,213, 214 ,215, 221, 222];
 
