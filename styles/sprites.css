@@ -10,7 +10,6 @@
 }
 
 .img {
-    /*background-image: url('./img/spritesheet.jpg');*/
     background-image: url('../img/spritesheet.jpg');
     background-repeat: no-repeat;
     background-size: calc(var(--total-width) * .24) calc(var(--total-height) * .24);
@@ -36,6 +35,10 @@
     background-position-y: calc(var(--image-width) * -10);
 }
 
+.research {
+    background-position-y: calc(var(--image-width) * -20);
+}
+
 .light-fighter, .rocket-launcher {
     background-position-x: 0;
 }
@@ -56,15 +59,15 @@
     background-position-x: calc(var(--image-width) * -4);
 }
 
-.bomber, .plasma-turret {
+.bomber, .plasma-turret, .combustion-drive {
     background-position-x: calc(var(--image-width) * -5);
 }
 
-.destroyer, .small-shield-dome {
+.destroyer, .small-shield-dome, .impulse-drive {
     background-position-x: calc(var(--image-width) * -6);
 }
 
-.death-star, .large-shield-dome {
+.death-star, .large-shield-dome, .hyperspace-drive {
     background-position-x: calc(var(--image-width) * -7);
 }
 
@@ -88,15 +91,15 @@
     background-position-x: calc(var(--image-width) * -12);
 }
 
-.solar-satellite {
+.solar-satellite, .armour-tech {
     background-position-x: calc(var(--image-width) * -13);
 }
 
-.crawler {
+.crawler, .weapons-tech {
     background-position-x: calc(var(--image-width) * -14);
 }
 
-.pathfinder {
+.pathfinder, .shield-tech {
     background-position-x: calc(var(--image-width) * -15);
 }
 
