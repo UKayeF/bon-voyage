@@ -54,13 +54,22 @@ class BattleManager {
         this.after = after;
         new Battle([allyObj], [enemyObj], window.bvConfig.shipData, window.bvConfig.rapidFire, this.expand );
     }
-    
-    expand = (stats, rounds) => {
+
+    calcDebrisField(idx, amount, priceList) {
+        const DEBRIS_FIELD_PERCENTAGE = 0.3;
+        const {metal, crystal} = priceList[idx];
+
+        return [metal, crystal].map(x => x * amount * DEBRIS_FIELD_PERCENTAGE);
+    }
+
+        expand = (stats, rounds) => {
         let latestRound = rounds.pop();
         let allyFleet = latestRound.attack_fleet.current[0];
         let enemyFleet = latestRound.defense_fleet.current[0],
             item;
         let current_explosions = 0, ally_difference = 0, enemy_difference = 0;
+        let debrisMetal = 0;
+        let debrisCrystal = 0;
 
         //Any survivors?
         for(let i=0; i<allyFleet.length; i++){
@@ -68,6 +77,9 @@ class BattleManager {
             current_explosions = (this.store.playerFleet.shipsExpanded[item].amount - allyFleet[i].difference);
             if(current_explosions){
                 this.store.playerFleet.shipsExpanded[item].changes = -current_explosions;
+                const [metal, crystal] = this.calcDebrisField(item, current_explosions, window.bvConfig.shipData);
+                debrisMetal += metal;
+                debrisCrystal += crystal;
             }
             ally_difference += allyFleet[i].difference;
         }
@@ -77,9 +89,21 @@ class BattleManager {
             current_explosions = (this.store.enemyFleet.shipsExpanded[item].amount - enemyFleet[i].difference);
             if(current_explosions){
                 this.store.enemyFleet.shipsExpanded[item].changes = -current_explosions;
+                const [metal, crystal] = this.calcDebrisField(item, current_explosions, window.bvConfig.shipData);
+                debrisMetal += metal;
+                debrisCrystal += crystal;
             }
             enemy_difference += enemyFleet[i].difference;
         }
+        const event = this.store.currentEvent;
+        const reaperCapacity = this.store.playerFleet.shipsExpanded['221'].amount * 10E3;
+        const harvestedCrystal = Math.min(reaperCapacity, debrisCrystal);
+        const remainingCapacity = Math.max(reaperCapacity - harvestedCrystal, 0);
+        const harvestedMetal = Math.min(remainingCapacity, debrisMetal);
+
+        event.metal = harvestedMetal;
+        event.crystal = harvestedCrystal;
+        this.store.storeResources();
 
         //Do something with wins - draws or loses
         if(ally_difference){
