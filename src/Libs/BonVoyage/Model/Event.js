@@ -73,9 +73,11 @@ export default class Event {
     @action static battleAction(store, event, action){
         event.validActions.attack = false;
         event.validActions.flee = false;
+        let debrisField = [0, 0];
+
         switch(action){
             case 'attack':
-                Event.handleBattleEvent(store, action);
+                debrisField = Event.handleBattleEvent(store, action);
                 break;
             case 'flee':
                 if(Math.random() > 0.5){
@@ -91,10 +93,11 @@ export default class Event {
 
                     Event.handleFleeEvent(store, null);
                 } else {
-                    Event.handleBattleEvent(store, action);
+                    debrisField = Event.handleBattleEvent(store, action);
                 }
                 break;
         }
+        return debrisField;
     }
 
     @action static stealBattleAction(store, event, action){
@@ -254,7 +257,7 @@ export default class Event {
                     }
 
                     setTimeout(() => {
-                        store.playerFleet.applyBattleResults();
+                        store.playerFleet.applyBattleResults(event, store);
                         if(event.type=='battle'){
                             store.pastEvents.push({
                                 time: store.playerFleet.timeUnit,
@@ -272,7 +275,7 @@ export default class Event {
                             });
                         }
                         store.changeState(GameState.states.space);
-                    }, 500);
+                    }, 2500);
                     break;
                 case BattleManager.LOST:
                     if(choice=='attack'){
@@ -296,7 +299,7 @@ export default class Event {
                         event.description += " We got our resources back...";
                     }
                     setTimeout( () => {
-                        store.playerFleet.applyBattleResults();
+                        store.playerFleet.applyBattleResults(event, store);
                         if(event.type=='battle'){
                             store.pastEvents.push({
                                 time: store.playerFleet.timeUnit,
@@ -311,7 +314,7 @@ export default class Event {
                             });
                         }
                         store.changeState(GameState.states.space);
-                    }, 1000);
+                    }, 2500);
                     break;
                 default:
                     console.log("Event error", result);
