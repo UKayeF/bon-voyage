@@ -14,6 +14,39 @@
 
 .flex-item {
     width: 100%;
+    display: flex;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.selector-item {
+    width: 100%;
+}
+
+.selector-item > div {
+    height: 48px;
+}
+
+.selector-item .inline {
+    display: inline;
+}
+
+.selector-item .flex-row {
+    display: flex;
+    align-items: center;
+}
+
+.selector-item .flex-row .text-info {
+    align-self: end;
+}
+
+.selector-item .flex-row button {
+    height: var(--image-width);
+    width: var(--image-width);
+    margin-top: 0;
+    margin-right: 2px;
 }
 
 #holder .one-third {

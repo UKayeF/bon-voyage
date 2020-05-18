@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { observer } from 'mobx-react';
-import { getIconType, makeCSSName, shipsToCode } from '../../utils/shipCodeMap';
+import React, {Component} from 'react';
+import {observer} from 'mobx-react';
+import {getIconType, makeCSSName, shipsToCode} from '../../utils/shipCodeMap';
 
 @observer
 class SelectorItemComponent extends Component {
@@ -13,31 +13,21 @@ class SelectorItemComponent extends Component {
     const className = `img ${iconType} ${shipName}`
 
     return (
-      <div className={'flex-item'}>
-        <span className="name">{this.props.shipData.name}</span>
-        <div className={className}></div>
-        {/*<img src={imgUrl} height="48" width="48" />*/}
-        <span className="text-info">{this.props.shipsExpanded[shipId].amount}</span>
-        <table className="mini-buttons" cellPadding="0" cellSpacing="0">
-          <tbody>
-          <tr>
-            <td>
-              <button className="text-info" onClick={this.addOne}>+1</button>
-            </td>
-            <td>
-              <button className="text-error" onClick={this.minusOne}>-1</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button className="text-info" onClick={this.addTen}>+10</button>
-            </td>
-            <td>
-              <button className="text-error" onClick={this.minusTen}>-10</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+      <div className='selector-item'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <span className="name">{this.props.shipData.name}</span>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <div className='row flex-row'>
+            <div className={className}></div>
+            <span className="text-info">{this.props.shipsExpanded[shipId].amount}</span>
+            <button className="text-info" onClick={this.addOne}>+1</button>
+            <button className="text-error" onClick={this.minusOne}>-1</button>
+            <button className="text-error" onClick={this.minusTen}>-10</button>
+          </div>
+        </div>
       </div>
     )
   }
