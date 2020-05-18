@@ -201,7 +201,7 @@ window.bvConfig = {
       'deuterium': 2000,
       'energy': 0,
       'factor': 1,
-      'capacity': 20000,
+      'capacity': 320000,
       'attack': 1,
       'defense': 10,
       'hull': 16000,
