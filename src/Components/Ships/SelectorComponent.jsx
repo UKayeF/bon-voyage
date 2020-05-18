@@ -10,21 +10,15 @@ class SelectorComponent extends Component {
   render() {
 
     return (
-      <div>
-        <table className="tbl-ships">
-          <tbody>
-          <tr>
-            {this.validShipIds.map((x, i) =>
-              <SelectorItemComponent
-                shipsExpanded={this.props.fleet.shipsExpanded}
-                tryToAlterShipCount={this.props.tryToAlterShipCount}
-                key={'shipInput-' + x}
-                shipData={this.props.priceList[x]} shipId={x}
-              />,
-            )}
-          </tr>
-          </tbody>
-        </table>
+      <div className={'flex-container'}>
+        {this.validShipIds.map((x, i) =>
+          <SelectorItemComponent
+            shipsExpanded={this.props.fleet.shipsExpanded}
+            tryToAlterShipCount={this.props.tryToAlterShipCount}
+            key={'shipInput-' + x}
+            shipData={this.props.priceList[x]} shipId={x}
+          />,
+        )}
       </div>
     )
   }

@@ -6,6 +6,16 @@
     display: none;
 }
 
+.flex-container {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    width: 100%;
+}
+
 #holder .one-third {
     width: 33%;
 }
