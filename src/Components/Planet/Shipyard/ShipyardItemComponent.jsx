@@ -20,45 +20,35 @@ class ShipyardItemComponent extends Component {
     const className = `img ${iconType} ${shipName}`
 
     return (
-      <td>
-        <span className="name">{this.props.shipData.name}</span>
-        <div className={className}></div>
-        {/*<img src={imgUrl} height="48" width="48" />*/}
-        <span className="text-info">{this.props.store.playerFleet.shipsExpanded[shipId].amount}</span>
-        <small>m {this.props.shipData.metal}</small>
-        <small>c {this.props.shipData.crystal}</small>
-        <small>d {this.props.shipData.deuterium}</small>
-        <table className="mini-buttons" cellPadding="0" cellSpacing="0">
-          <tbody>
-          <tr>
-            <td>
-              <button className="text-info" onClick={this.addOne}>+1</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button className="text-info" onClick={this.addTen}>+10</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <br/>
-        <span className="text-warning">§ {this.getPrice()}</span>
-        <table className="mini-buttons" cellPadding="0" cellSpacing="0">
-          <tbody>
-          <tr>
-            <td>
-              <button className="text-success" onClick={this.purchaseOne}>+1</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button className="text-success" onClick={this.purchaseTen}>+10</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </td>
+      <div className='selector-item'>
+        <div className='container-fluid ship-label'>
+          <div className='row'>
+            <span className="name">{this.props.shipData.name}</span>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <div className='row flex-row'>
+            <div className={className}></div>
+            <span className="text-info">{this.props.store.playerFleet.shipsExpanded[shipId].amount}</span>
+            <div className='flex-column'>
+              <small>m {this.props.shipData.metal}</small>
+              <small>c {this.props.shipData.crystal}</small>
+              <small>d {this.props.shipData.deuterium}</small>
+            </div>
+            <button className="text-info" onClick={this.addOne}>+1</button>
+            <button className="text-info" onClick={this.addTen}>+10</button>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <div className='row flex-row'>
+            <div>
+              <span className="text-warning">§ {this.getPrice()}</span>
+            </div>
+            <button className="text-success" onClick={this.purchaseOne}>+1</button>
+            <button className="text-success" onClick={this.purchaseTen}>+10</button>
+          </div>
+        </div>
+      </div>
     )
   }
 
