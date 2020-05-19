@@ -39,23 +39,23 @@
     background-position-y: calc(var(--image-width) * -20);
 }
 
-.light-fighter, .rocket-launcher {
+.light-fighter, .rocket-launcher, .energy-tech {
     background-position-x: 0;
 }
 
-.heavy-fighter, .light-laser {
+.heavy-fighter, .light-laser, .laser-tech {
     background-position-x: calc(var(--image-width) * -1);
 }
 
-.cruiser, .heavy-laser {
+.cruiser, .heavy-laser, .ion-tech {
     background-position-x: calc(var(--image-width) * -2);
 }
 
-.battleship, .gauss-cannon {
+.battleship, .gauss-cannon, .hyperspace-tech {
     background-position-x: calc(var(--image-width) * -3);
 }
 
-.battlecruiser, .ion-cannon {
+.battlecruiser, .ion-cannon, .plasma-tech {
     background-position-x: calc(var(--image-width) * -4);
 }
 
@@ -71,23 +71,23 @@
     background-position-x: calc(var(--image-width) * -7);
 }
 
-.small-cargo, .defense-missile {
+.small-cargo, .defense-missile, .espionage-tech {
     background-position-x: calc(var(--image-width) * -8);
 }
 
-.large-cargo, .interplanetary-missile {
+.large-cargo, .interplanetary-missile, .computer-tech {
     background-position-x: calc(var(--image-width) * -9);
 }
 
-.colony-ship {
+.colony-ship, .astrophysics {
     background-position-x: calc(var(--image-width) * -10);
 }
 
-.recycler {
+.recycler, .intergalactic-research-lab {
     background-position-x: calc(var(--image-width) * -11);
 }
 
-.espionage-probe {
+.espionage-probe, .graviton-tech {
     background-position-x: calc(var(--image-width) * -12);
 }
 
