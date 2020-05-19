@@ -4,25 +4,19 @@ import { observer } from 'mobx-react';
 @observer
 class TechsNavComponent extends Component {
 
-    render(){
+  render() {
 
-        return(
-            <table className="mini-techs-table">
-                <tbody>
-                    <tr>
-                        <td className="one-third">Military tech</td>
-                        <td className="one-third">Shielding tech</td>
-                        <td>Armor tech</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;<span className="text-warning">{this.props.techList['109']}</span>&nbsp;</td>
-                        <td>&nbsp;<span className="text-warning">{this.props.techList['110']}</span>&nbsp;</td>
-                        <td>&nbsp;<span className="text-warning">{this.props.techList['111']}</span>&nbsp;</td>
-                    </tr>
-                </tbody>
-            </table>
-        )
-    }
+    return (
+      <div className="mini-techs-table-flex">
+        <div className="">Military tech</div>
+        <div>&nbsp;<span className="text-warning">{this.props.techList['109']}</span>&nbsp;</div>
+        <div className="">Shielding tech</div>
+        <div>&nbsp;<span className="text-warning">{this.props.techList['110']}</span>&nbsp;</div>
+        <div>Armor tech</div>
+        <div>&nbsp;<span className="text-warning">{this.props.techList['111']}</span>&nbsp;</div>
+      </div>
+    )
+  }
 }
 
 export default TechsNavComponent;

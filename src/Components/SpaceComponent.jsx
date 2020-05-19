@@ -13,15 +13,15 @@ class SpaceComponent extends Component {
 
     render () {
         return (
-            <div className={ this.props.visibility ? '' : 'hidden' }>
+            <div className={ this.props.visibility ? 'fullwidth' : 'hidden' }>
                 <h3>Space</h3>
                 <TechsNavComponent debugMode={this.props.store.debugMode} techList={this.props.store.playerFleet.techs} />
                 <p>The outer space...</p>
-                <div className="pull-left">
-                    <MapComponent store={this.props.store} />
+                <div className="pull-left fullwidth">
+                    <MapComponent store={this.props.store} className='fullwidth'/>
                 </div>
-                <div className="pull-right">
-                    <EventListComponent store={this.props.store} />
+                <div className="pull-right fullwidth">
+                    <EventListComponent store={this.props.store} className='fullwidth'/>
                 </div>
                 <div className="clear"></div>
                 <div className="pull-left half">
