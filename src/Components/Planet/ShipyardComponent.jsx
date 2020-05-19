@@ -23,19 +23,17 @@ class ShipyardComponent extends Component {
       <div className={this.props.visibility ? '' : 'hidden'}>
         <h4>Shipyard</h4>
         <p>Interested in anything?</p>
-        <table className="tbl-ships tbl-ships-space">
-          <tbody>
-          <tr>
-            {this.validShipIds.map((x, i) =>
-              <ShipyardItemComponent store={this.props.store}
-                                     key={'shipYardInput-' + x}
-                                     shipData={this.props.priceList[x]} shipId={x}
-                                     tryToIncreaseItem={this.tryToIncreaseItem}
-                                     tryToPurchaseShip={this.tryToPurchaseShip}/>
-            )}
-          </tr>
-          </tbody>
-        </table>
+        <div className="tbl-ships tbl-ships-space">
+          {this.validShipIds.map((x, i) =>
+            <ShipyardItemComponent
+              store={this.props.store}
+              key={'shipYardInput-' + x}
+              shipData={this.props.priceList[x]} shipId={x}
+              tryToIncreaseItem={this.tryToIncreaseItem}
+              tryToPurchaseShip={this.tryToPurchaseShip}
+            />
+          )}
+        </div>
         <br/>
         <div>
           <span className={this.success ? 'text-success' : 'hidden'}>Thanks for buying!</span>
