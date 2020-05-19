@@ -49,6 +49,11 @@
     align-self: end;
 }
 
+.selector-item .flex-row span.img-overlap {
+    position: absolute;
+    left: 48px;
+}
+
 .selector-item .flex-row button {
     height: var(--image-width);
     width: var(--image-width);
@@ -221,6 +226,8 @@
 .techs-nav {
     top: 0;
     right: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .techs-nav td {
