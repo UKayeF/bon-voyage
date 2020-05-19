@@ -161,8 +161,20 @@
 }
 
 .tbl-resources {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     font-size: 8px;
+}
+
+.tbl-resources.fleet-status {
+    flex-direction: column;
+}
+
+.tbl-resources.fleet-status > div {
+    display: flex;
+    justify-content: space-between;
 }
 
 .tbl-resources th {

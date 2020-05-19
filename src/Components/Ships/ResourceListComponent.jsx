@@ -17,48 +17,44 @@ class ResourceListComponent extends Component {
 
     return (
       <div>
-        <table className="tbl-resources">
-          <thead>
-          <tr>
-            <th className="one-third">Metal</th>
-            <th className="one-third">Crystal</th>
-            <th>Deuterium</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>{this.props.headQuarters.metal}</td>
-            <td>{this.props.headQuarters.crystal}</td>
-            <td>{this.props.headQuarters.deuterium}</td>
-          </tr>
-          </tbody>
-        </table>
-        <table className="tbl-resources">
-          <tbody>
-          <tr>
-            <th className="half">Capacity</th>
-            <td><span
+        <div className="tbl-resources fullwidth">
+          <div>
+            <div className="resource-img metal small" title='Metal'></div>
+            <div>{this.props.headQuarters.metal}</div>
+          </div>
+          <div>
+            <div className="resource-img crystal small" title='Crystal'></div>
+            <div>{this.props.headQuarters.crystal}</div>
+          </div>
+          <div>
+            <div className='resource-img deuterium small' title='Deuterium'></div>
+            <div><span className="text-error">{this.props.headQuarters.deuterium}</span></div>
+          </div>
+        </div>
+        <div className="tbl-resources fleet-status">
+          <div>
+            <div className="half">Capacity</div>
+            <div><span
               className={(this.calcUsedCapacity < this.props.playerFleet.capacity) ? 'text-info' : 'text-error'}>
-                                    {this.calcUsedCapacity}</span>/{this.props.playerFleet.capacity}</td>
-          </tr>
-          <tr>
-            <th>Consumption</th>
-            <td>{this.props.playerFleet.consumption}</td>
-          </tr>
-          <tr>
-            <th>Speed</th>
-            <td>{this.props.playerFleet.speed}</td>
-          </tr>
-          <tr>
-            <th>Ships</th>
-            <td>{this.props.playerFleet.shipCount}</td>
-          </tr>
-          <tr>
-            <th>Space Credits</th>
-            <td><span className="text-success">§ {this.props.playerFleet.spaceCredits}</span></td>
-          </tr>
-          </tbody>
-        </table>
+                                    {this.calcUsedCapacity}</span>/{this.props.playerFleet.capacity}</div>
+          </div>
+          <div>
+            <div>Consumption</div>
+            <div>{this.props.playerFleet.consumption}</div>
+          </div>
+          <div>
+            <div>Speed</div>
+            <div>{this.props.playerFleet.speed}</div>
+          </div>
+          <div>
+            <div>Ships</div>
+            <div>{this.props.playerFleet.shipCount}</div>
+          </div>
+          <div>
+            <div>Space Credits</div>
+            <div><span className="text-success">§ {this.props.playerFleet.spaceCredits}</span></div>
+          </div>
+        </div>
       </div>
     );
   }
