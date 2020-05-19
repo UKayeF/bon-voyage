@@ -17,6 +17,35 @@
     width: var(--image-width);
 }
 
+.resource-img {
+    background-image: url('../img/resource-sprites.png');
+    background-repeat: no-repeat;
+    height: var(--img_sm-size);
+    width: var(--img_sm-size);
+}
+
+.resource-img.small {
+    height: var(--img_xs-size);
+    width: var(--image-width);
+    background-position-y: calc(var(--img_sm-size) * -2);
+}
+
+.resource-img.crystal{
+    background-position-x: calc(var(--img_sm-size) * -1);
+}
+
+.resource-img.deuterium {
+    background-position-x: calc(var(--img_sm-size) * -2);
+}
+
+.resource-img.crystal.small {
+    background-position-x: calc(var(--image-width) * -1);
+}
+
+.resource-img.deuterium.small {
+    background-position-x: calc(var(--image-width) * -2);
+}
+
 .img .small {
     background-size: calc(var(--total-width) * .1) calc(var(--total-height) * .1);
     height: 20px;
