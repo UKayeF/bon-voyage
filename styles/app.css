@@ -33,12 +33,19 @@
     display: inline;
 }
 
+.selector-item .ship-label {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
 .selector-item .flex-row {
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 
-.selector-item .flex-row .text-info {
+.selector-item .flex-row .text-info, .selector-item .flex-row .img {
     align-self: end;
 }
 

@@ -14,7 +14,7 @@ class SelectorItemComponent extends Component {
 
     return (
       <div className='selector-item'>
-        <div className='container-fluid'>
+        <div className='container-fluid ship-label'>
           <div className='row'>
             <span className="name">{this.props.shipData.name}</span>
           </div>
