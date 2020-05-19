@@ -110,10 +110,9 @@
     margin-bottom: 10px;
 }
 
-.tbl-ships {
+.tbl-ships small{
     font-size: 7px;
     color: #99f;
-    margin-top: 20px;
 }
 
 .tbl-ships > tbody > tr > td {
