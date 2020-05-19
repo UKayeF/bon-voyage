@@ -55,7 +55,7 @@
     justify-content: space-around;
 }
 
-.selector-item .flex-row .text-info, .selector-item .flex-row .img {
+.selector-item .flex-row .text-info, .flex-row .selector-item .flex-row .img {
     align-self: end;
 }
 
