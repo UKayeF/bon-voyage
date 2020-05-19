@@ -24,6 +24,7 @@ class SelectorItemComponent extends Component {
             <div className={className}></div>
             <span className="text-info">{this.props.shipsExpanded[shipId].amount}</span>
             <button className="text-info" onClick={this.addOne}>+1</button>
+            <button className="text-info" onClick={this.addTen}>+10</button>
             <button className="text-error" onClick={this.minusOne}>-1</button>
             <button className="text-error" onClick={this.minusTen}>-10</button>
           </div>
