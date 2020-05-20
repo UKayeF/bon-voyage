@@ -346,7 +346,7 @@ class PlayerFleet extends Fleet {
   }
 
   static calcSpeed(motorLevel, speed, factor){
-    return speed * (1 + motorLevel*factor/10 );
+    return Math.ceil(speed * (1 + motorLevel*factor/10 ));
   }
 
   static calcConsumption(distance, duration, speed, amount, consumption){
