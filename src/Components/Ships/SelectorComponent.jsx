@@ -10,7 +10,7 @@ class SelectorComponent extends Component {
   render() {
 
     return (
-      <div className={'flex-container'}>
+      <div className='flex-container'>
         {this.validShipIds.map((x, i) =>
           <SelectorItemComponent
             shipsExpanded={this.props.fleet.shipsExpanded}

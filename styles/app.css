@@ -1,3 +1,13 @@
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .clear {
     clear: both;
 }
@@ -45,8 +55,13 @@
     justify-content: space-around;
 }
 
-.selector-item .flex-row .text-info, .selector-item .flex-row .img {
+.selector-item .flex-row .text-info, .flex-row .selector-item .flex-row .img {
     align-self: end;
+}
+
+.selector-item .flex-row span.img-overlap {
+    position: absolute;
+    left: 48px;
 }
 
 .selector-item .flex-row button {
@@ -95,10 +110,9 @@
     margin-bottom: 10px;
 }
 
-.tbl-ships {
+.tbl-ships small{
     font-size: 7px;
     color: #99f;
-    margin-top: 20px;
 }
 
 .tbl-ships > tbody > tr > td {
@@ -156,8 +170,20 @@
 }
 
 .tbl-resources {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     font-size: 8px;
+}
+
+.tbl-resources.fleet-status {
+    flex-direction: column;
+}
+
+.tbl-resources.fleet-status > div {
+    display: flex;
+    justify-content: space-between;
 }
 
 .tbl-resources th {
@@ -221,6 +247,8 @@
 .techs-nav {
     top: 0;
     right: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .techs-nav td {
@@ -283,8 +311,6 @@
 }
 
 .bottom-menu {
-    position: absolute;
-    bottom: 20px;
     width: 100%;
 }
 
