@@ -32,7 +32,7 @@ class ResourceListComponent extends Component {
             <div><span className="text-error">{this.props.playerFleet.deuterium}</span></div>
           </div>
         </div>
-        <div className="tbl-resources">
+        <div className="tbl-resources flex-column">
           <div>
             <div className="half">Capacity</div>
             <div>{this.props.playerFleet.usedCapacity}/{this.props.playerFleet.capacity}</div>
