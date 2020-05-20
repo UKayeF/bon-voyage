@@ -15,7 +15,7 @@ class SpaceComponent extends Component {
         return (
             <div className={ this.props.visibility ? 'fullwidth' : 'hidden' }>
                 <h3>Space</h3>
-                <TechsNavComponent debugMode={this.props.store.debugMode} techList={this.props.store.playerFleet.techs} />
+                <TechsNavComponent inSpace={true} debugMode={this.props.store.debugMode} techList={this.props.store.playerFleet.techs} />
                 <p>The outer space...</p>
                 <div className="pull-left fullwidth">
                     <MapComponent store={this.props.store} className='fullwidth'/>

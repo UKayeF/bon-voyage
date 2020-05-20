@@ -5,35 +5,38 @@ import {observer} from 'mobx-react';
 class TechsNavComponent extends Component {
 
   render() {
+    const SHOW_ASTROPHYSICS = false;
+    const prefixClassName = name => `img tech ${name} ${this.props.inSpace ? 'xs': ''}`
+
 
     return (
       <div className="techs-nav">
         <div>
-          <div title='Military tech' className='img tech weapons-tech'></div>
+          <div title='Military tech' className={prefixClassName('weapons-tech')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['109']}</span>&nbsp;</div>
         </div>
         <div>
-          <div title='Shielding tech' className='img tech shield-tech'></div>
+          <div title='Shielding tech' className={prefixClassName('shield-tech')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['110']}</span>&nbsp;</div>
         </div>
         <div>
-          <div title='Armor tech' className='img tech armour-tech'></div>
+          <div title='Armor tech' className={prefixClassName('armour-tech')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['111']}</span>&nbsp;</div>
         </div>
         <div>
-          <div title='Combustion Drive' className='img tech combustion-drive'></div>
+          <div title='Combustion Drive' className={prefixClassName('combustion-drive')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['115']}</span>&nbsp;</div>
         </div>
         <div>
-          <div title='Impulse Drive' className='img tech impulse-drive'></div>
+          <div title='Impulse Drive' className={prefixClassName('impulse-drive')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['117']}</span>&nbsp;</div>
         </div>
         <div>
-          <div title='Hyperspace Drive' className='img tech hyperspace-drive'></div>
+          <div title='Hyperspace Drive' className={prefixClassName('hyperspace-drive')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['118']}</span>&nbsp;</div>
         </div>
-        <div>
-          <div title='Astrophysics' className='img tech astrophysics'></div>
+        <div className={SHOW_ASTROPHYSICS ? '' : 'hidden'}>
+          <div title='Astrophysics' className={prefixClassName('astrophysics')}></div>
           <div>&nbsp;<span className="text-success">{this.props.techList['124']}</span>&nbsp;</div>
         </div>
       </div>

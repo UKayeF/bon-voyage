@@ -17,7 +17,45 @@
     width: var(--image-width);
 }
 
-.resource-img {
+.tech.img.xs {
+    --sc: calc(var(--img_xs-size) / var(--img_lg-size));
+    --width_scaled: 640px;
+    --height_scaled: 960px;
+    background-size: var(--width_scaled) var(--height_scaled);
+    background-position-y: calc(var(--img_xs-size) * -20);
+    height: var(--img_xs-size);
+    width: var(--img_xs-size);
+}
+
+.tech.img.xs.combustion-drive {
+    background-position-x: calc(var(--img_xs-size) * -5);
+}
+
+.tech.img.xs.armour-tech.impulse-drive {
+    background-position-x: calc(var(--img_xs-size) * -6);
+}
+
+.tech.img.xs.hyperspace-drive {
+    background-position-x: calc(var(--img_xs-size) * -7);
+}
+
+.tech.img.xs.astrophysics {
+    background-position-x: calc(var(--img_xs-size) * -10);
+}
+
+.tech.img.xs.armour-tech {
+    background-position-x: calc(var(--img_xs-size) * -13);
+}
+
+.tech.img.xs.weapons-tech {
+    background-position-x: calc(var(--img_xs-size) * -14);
+}
+
+.tech.img.xs.shield-tech {
+    background-position-x: calc(var(--img_xs-size) * -15);
+}
+
+ .resource-img {
     background-image: url('../img/resource-sprites.png');
     background-repeat: no-repeat;
     height: var(--img_sm-size);
