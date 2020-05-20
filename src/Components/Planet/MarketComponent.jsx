@@ -27,63 +27,47 @@ class MarketComponent extends Component {
       <div className={this.props.visibility ? '' : 'hidden'}>
         <h4>Resource Market</h4>
         <p>You can exchange your Space Credits for resources here</p>
-        <table className="market-resources">
-          <tbody>
-          <tr>
-            <td><img src={path + 'metall.gif'}/><br/><br/>
-              Metal<br/>
-              <table className="mid-buttons" cellPadding="0" cellSpacing="0">
-                <tbody>
-                <tr>
-                  <td><br/><span className="text-warning">§ {this.tenthsMetal}</span><br/>
-                    <button className="text-info" onClick={this.addTM}>+10000</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><br/><span className="text-warning">§ {this.tenthsMetal * 10}</span>
-                    <button className="text-info" onClick={this.addHM}>+100000</button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </td>
-            <td><img src={path + 'kristall.gif'}/><br/><br/>
-              Crystal<br/>
-              <table className="mid-buttons" cellPadding="0" cellSpacing="0">
-                <tbody>
-                <tr>
-                  <td><br/><span className="text-warning">§ {this.tenthsCrystal}</span><br/>
-                    <button className="text-info" onClick={this.addTC}>+10000</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><br/><span className="text-warning">§ {this.tenthsCrystal * 10}</span>
-                    <button className="text-info" onClick={this.addHC}>+100000</button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </td>
-            <td><img src={path + 'deuterium.gif'}/><br/><br/>
-              Deuterium<br/>
-              <table className="mid-buttons" cellPadding="0" cellSpacing="0">
-                <tbody>
-                <tr>
-                  <td><br/><span className="text-warning">§ {this.tenthsDeuterium}</span><br/>
-                    <button className="text-info" onClick={this.addTD}>+10000</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td><br/><span className="text-warning">§ {this.tenthsDeuterium * 10}</span>
-                    <button className="text-info" onClick={this.addHD}>+100000</button>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+        <div className="market-resources">
+          <div id='resource-market-metal'>
+            <div className='resource-img small metal' title='Metal'></div>
+            <div className="mid-buttons" cellPadding="0" cellSpacing="0">
+              <div>
+                <span className="text-warning">§ {this.tenthsMetal}</span>
+                <button className="text-info" onClick={this.addTM}>+10000</button>
+              </div>
+              <div>
+                <span className="text-warning">§ {this.tenthsMetal * 10}</span>
+                <button className="text-info" onClick={this.addHM}>+100000</button>
+              </div>
+            </div>
+          </div>
+          <div id='resource-market-crystal'>
+            <div className='resource-img small crystal' title='Crystal'></div>
+            <div className="mid-buttons" cellPadding="0" cellSpacing="0">
+              <div>
+                <span className="text-warning">§ {this.tenthsCrystal}</span>
+                <button className="text-info" onClick={this.addTC}>+10000</button>
+              </div>
+              <div>
+                <span className="text-warning">§ {this.tenthsCrystal * 10}</span>
+                <button className="text-info" onClick={this.addHC}>+100000</button>
+              </div>
+            </div>
+          </div>
+          <div id='resource-market-deuterium'>
+            <div className='resource-img small deuterium' title='Deuterium'></div>
+            <div className="mid-buttons" cellPadding="0" cellSpacing="0">
+              <div>
+                <span className="text-warning">§ {this.tenthsDeuterium}</span>
+                <button className="text-info" onClick={this.addTD}>+10000</button>
+              </div>
+              <div>
+                <span className="text-warning">§ {this.tenthsDeuterium * 10}</span>
+                <button className="text-info" onClick={this.addHD}>+100000</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div>
           <br/>
           <span className={this.success ? 'text-success' : 'hidden'}>Thanks for buying!</span>

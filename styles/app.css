@@ -330,9 +330,20 @@
 }
 
 .market-resources {
-    width: 600px;
+    display: flex;
+    width: auto;
+    justify-content: space-between;
     text-align: center;
     margin: 0 auto;
+}
+
+.market-resources > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.market-resources .resource-img {
+    align-self: center;
 }
 
 .market-resources > tbody > tr > td {
