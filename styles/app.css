@@ -198,6 +198,12 @@
     line-height: 20px;
 }
 
+.tbl-resources .yellow-text {
+    color: #dbb500;
+    text-align: left;
+    line-height: 20px;
+}
+
 .half {
     width: 50%;
     margin: 0;

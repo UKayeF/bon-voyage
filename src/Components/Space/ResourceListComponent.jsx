@@ -34,24 +34,32 @@ class ResourceListComponent extends Component {
         </div>
         <div className="tbl-resources flex-column">
           <div>
-            <div className="half">Capacity</div>
-            <div>{this.props.playerFleet.usedCapacity}/{this.props.playerFleet.capacity}</div>
+            <div>Capacity</div>
+            <div className={
+              this.props.playerFleet.usedCapacity ===
+              this.props.playerFleet.capacity ?
+                'text-error' :
+                'yellow-text'
+            }>
+              {this.props.playerFleet.usedCapacity}
+              /{this.props.playerFleet.capacity}
+            </div>
           </div>
           <div>
             <div>Consumption</div>
-            <div>{this.props.playerFleet.consumption}</div>
+            <div className="yellow-text">{this.props.playerFleet.consumption}</div>
           </div>
           <div>
             <div>Time Unit</div>
-            <div>{ResourceListComponent.formatTime(this.props.playerFleet.timeUnit)}</div>
+            <div className="yellow-text">{ResourceListComponent.formatTime(this.props.playerFleet.timeUnit)}</div>
           </div>
           <div>
             <div>Speed</div>
-            <div><span className={speedClass}>{this.props.playerFleet.speed}</span></div>
+            <div className="yellow-text"><span className={speedClass}>{this.props.playerFleet.speed}</span></div>
           </div>
           <div>
             <div>Speed %</div>
-            <div><span className={speedClass}>{this.props.playerFleet.fleetSpeed}0%</span></div>
+            <div className="yellow-text"><span className={speedClass}>{this.props.playerFleet.fleetSpeed}0%</span></div>
           </div>
           <div>
             <div>Distance</div>
@@ -59,11 +67,12 @@ class ResourceListComponent extends Component {
           </div>
           <div>
             <div>Ships</div>
-            <div>{this.props.playerFleet.shipCount}</div>
+            <div className="yellow-text">{this.props.playerFleet.shipCount}</div>
           </div>
           <div>
             <div>Space Credits</div>
-            <div><span className="text-success">§ {this.props.playerFleet.spaceCredits}</span></div>
+            <div className="yellow-text"><span className="text-success">§ {this.props.playerFleet.spaceCredits}</span>
+            </div>
           </div>
         </div>
       </div>
