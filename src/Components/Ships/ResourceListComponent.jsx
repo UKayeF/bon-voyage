@@ -26,9 +26,12 @@ class ResourceListComponent extends Component {
         <div className="tbl-resources fleet-status">
           <div>
             <div className="half">Capacity</div>
-            <div><span
-              className={(this.calcUsedCapacity < this.props.playerFleet.capacity) ? 'text-info' : 'text-error'}>
-                                    {this.calcUsedCapacity}</span>/{this.props.playerFleet.capacity}</div>
+            <div>
+              <span className={(this.calcUsedCapacity < this.props.playerFleet.capacity) ? 'text-info' : 'text-error'}>
+                {this.calcUsedCapacity}
+              </span>
+              /{this.props.playerFleet.capacity}
+            </div>
           </div>
           <div>
             <div>Consumption</div>
