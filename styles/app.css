@@ -1,3 +1,15 @@
+.metal {
+    color: lightslategray !important;
+}
+
+.crystal {
+    color: skyblue !important;
+}
+
+.deuterium {
+    color: lightseagreen !important;
+}
+
 .flex-row {
     display: flex !important;
     flex-direction: row !important;
