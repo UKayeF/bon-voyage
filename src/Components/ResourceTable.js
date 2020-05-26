@@ -13,7 +13,7 @@ const ResourceTable = ({metal = 0, crystal = 0, deuterium = 0}) => {
       </div>
       <div>
         <div className='resource-img deuterium small' title='Deuterium'></div>
-        <div><span className="metal text-error">{deuterium}</span></div>
+        <div><span className="deuterium text-error">{deuterium}</span></div>
       </div>
     </div>
   );
