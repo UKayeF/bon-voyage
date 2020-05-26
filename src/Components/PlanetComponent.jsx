@@ -10,6 +10,7 @@ import MarketComponent from './Planet/MarketComponent';
 import ResearchLabComponent from './Planet/ResearchLabComponent';
 
 import GameState from '../Libs/BonVoyage/Model/GameState';
+import ResourceTable from './ResourceTable';
 
 @observer
 class PlanetComponent extends Component {
@@ -31,18 +32,11 @@ class PlanetComponent extends Component {
         <p>{this.props.store.currentPlanet.description}</p>
         <TechsNavComponent debugMode={this.props.store.debugMode} techList={this.props.store.playerFleet.techs}/>
         <div className="tbl-resources fullwidth">
-          <div>
-            <div className='resource-img metal small' title='Metal'></div>
-            <div>{this.props.store.playerFleet.metal}</div>
-          </div>
-          <div>
-            <div className='resource-img crystal small'></div>
-            <div>{this.props.store.playerFleet.crystal}</div>
-          </div>
-          <div>
-            <div className='resource-img deuterium small'></div>
-            <div>{this.props.store.playerFleet.deuterium}</div>
-          </div>
+          <ResourceTable
+            metal={this.props.store.playerFleet.metal}
+            crystal={this.props.store.playerFleet.crystal}
+            deuterium={this.props.store.playerFleet.deuterium}
+          />
           <div>
             <div className="one-fifth">Space Credits</div>
             <div><span className="text-success">§ {this.props.store.playerFleet.spaceCredits}</span></div>
