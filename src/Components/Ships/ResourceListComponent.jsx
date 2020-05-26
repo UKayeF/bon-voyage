@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {computed} from 'mobx';
 import {observer} from 'mobx-react';
+import ResourceTable from '../ResourceTable';
 
 
 @observer
@@ -17,20 +18,11 @@ class ResourceListComponent extends Component {
 
     return (
       <div>
-        <div className="tbl-resources fullwidth">
-          <div>
-            <div className="resource-img metal small" title='Metal'></div>
-            <div className='metal'>{this.props.headQuarters.metal}</div>
-          </div>
-          <div>
-            <div className="resource-img crystal small" title='Crystal'></div>
-            <div className='crystal'>{this.props.headQuarters.crystal}</div>
-          </div>
-          <div>
-            <div className='resource-img deuterium small' title='Deuterium'></div>
-            <div><span className="metal text-error">{this.props.headQuarters.deuterium}</span></div>
-          </div>
-        </div>
+        <ResourceTable
+          metal={this.props.headQuarters.metal}
+          crystal={this.props.headQuarters.crystal}
+          deuterium={this.props.headQuarters.deuterium}
+        />
         <div className="tbl-resources fleet-status">
           <div>
             <div className="half">Capacity</div>
