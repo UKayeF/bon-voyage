@@ -37,6 +37,7 @@ class ShipyardItemComponent extends Component {
             </div>
             <button className="text-info" onClick={this.addOne}>+1</button>
             <button className="text-info" onClick={this.addTen}>+10</button>
+            <button className="text-info" onClick={this.addHundred}>+100</button>
           </div>
         </div>
         <div className='container-fluid'>
@@ -46,6 +47,7 @@ class ShipyardItemComponent extends Component {
             </div>
             <button className="text-success" onClick={this.purchaseOne}>+1</button>
             <button className="text-success" onClick={this.purchaseTen}>+10</button>
+            <button className="text-success" onClick={this.purchaseHundred}>+100</button>
           </div>
         </div>
       </div>
@@ -60,6 +62,10 @@ class ShipyardItemComponent extends Component {
     this.changeAmount(this.props.store.playerFleet.shipsExpanded[this.props.shipId].amount + 10);
   };
 
+  addHundred = (event) => {
+    this.changeAmount(this.props.store.playerFleet.shipsExpanded[this.props.shipId].amount + 100);
+  }
+
   changeAmount(amount) {
     this.props.tryToIncreaseItem(this.props.shipId, amount);
   }
@@ -70,6 +76,10 @@ class ShipyardItemComponent extends Component {
 
   purchaseTen = (event) => {
     this.purchaseAmount(10);
+  };
+
+  purchaseHundred = (event) => {
+    this.purchaseAmount(100);
   };
 
   purchaseAmount(amount) {
