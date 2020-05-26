@@ -20,15 +20,15 @@ class ResourceListComponent extends Component {
         <div className="tbl-resources fullwidth">
           <div>
             <div className="resource-img metal small" title='Metal'></div>
-            <div>{this.props.headQuarters.metal}</div>
+            <div className='metal'>{this.props.headQuarters.metal}</div>
           </div>
           <div>
             <div className="resource-img crystal small" title='Crystal'></div>
-            <div>{this.props.headQuarters.crystal}</div>
+            <div className='crystal'>{this.props.headQuarters.crystal}</div>
           </div>
           <div>
             <div className='resource-img deuterium small' title='Deuterium'></div>
-            <div><span className="text-error">{this.props.headQuarters.deuterium}</span></div>
+            <div><span className="metal text-error">{this.props.headQuarters.deuterium}</span></div>
           </div>
         </div>
         <div className="tbl-resources fleet-status">
