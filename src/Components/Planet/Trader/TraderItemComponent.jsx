@@ -32,7 +32,7 @@ class TraderItemComponent extends Component {
         <div className='container-fluid'>
           <div className='row flex-row'>
             <div className={className}></div>
-            <span className="text-info">{this.props.store.playerFleet.shipsExpanded[shipId].amount}</span><br />
+            <span className="text-info">{this.props.store.playerFleet.shipsExpanded[shipId].amount}</span>
             <span className="text-error">§ {this.getTradePrice()}</span>
             <button className="text-error" onClick={this.sellOne}>-1</button>
             <button className="text-error" onClick={this.sellTen}>-10</button>
