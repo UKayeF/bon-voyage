@@ -23,11 +23,11 @@ class ShipListItemComponent extends Component {
         <span className='ship-desc'>
           { this.props.priceList[x].name }
         </span>
+        <span className='amount'>{currentAmount}</span>
+        <div>{changes}</div>
         <div className=''>
           <div className={className}></div>
         </div>
-        <span className='amount'>{currentAmount}</span>
-        <div>{changes}</div>
       </div>
     );
   }

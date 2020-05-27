@@ -264,12 +264,18 @@
     font-size: 8px;
 }
 
+.pull-right .ship-item {
+    justify-content: flex-start;
+}
+
 .ship-item {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .ship-item .ship-desc {
+    margin: auto auto auto 0;
     align-self: center;
 }
 
