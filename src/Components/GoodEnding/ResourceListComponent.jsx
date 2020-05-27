@@ -18,31 +18,28 @@ class ResourceListComponent extends Component {
           crystal={this.props.playerFleet.crystal}
           deuterium={this.props.playerFleet.deuterium}
         />
-        <table className="tbl-resources">
-          <tbody>
-          <tr>
-            <th>Score</th>
-            <th><span className="current_capacity">{this.props.store.score}</span></th>
-          </tr>
-          <tr>
-            <th>Time Unit</th>
-            <td>{ResourceListComponent.formatTime(this.props.playerFleet.timeUnit)}</td>
-          </tr>
-          <tr>
-            <th>Speed</th>
-            <td><span>{this.props.playerFleet.speed}</span></td>
-          </tr>
-          <tr>
-            <th>Ships</th>
-            <td>{this.props.playerFleet.shipCount}</td>
-          </tr>
-          <tr>
-            <th>Space Credits</th>
-            <td><span className="text-success">§ {this.props.playerFleet.spaceCredits}</span></td>
-          </tr>
-
-          </tbody>
-        </table>
+        <div className="tbl-resources final-score">
+          <div>
+            <div>Score</div>
+            <span className="current_capacity">{this.props.store.score}</span>
+          </div>
+          <div>
+            <div>Time Unit</div>
+            <div>{ResourceListComponent.formatTime(this.props.playerFleet.timeUnit)}</div>
+          </div>
+          <div>
+            <div>Speed</div>
+            <span>{this.props.playerFleet.speed}</span>
+          </div>
+          <div>
+            <div>Ships</div>
+            <div>{this.props.playerFleet.shipCount}</div>
+          </div>
+          <div>
+            <div>Space Credits</div>
+            <span className="text-success">§ {this.props.playerFleet.spaceCredits}</span>
+          </div>
+        </div>
       </div>
     );
   }
