@@ -5,15 +5,23 @@ import { observer } from 'mobx-react';
 class TechsNavComponent extends Component {
 
   render() {
+    const prefixClassName = name => `img tech ${name} ${this.props.inSpace ? '': ''}`
 
     return (
-      <div className="mini-techs-table-flex">
-        <div className="">Military tech</div>
-        <div>&nbsp;<span className="text-warning">{this.props.techList['109']}</span>&nbsp;</div>
-        <div className="">Shielding tech</div>
-        <div>&nbsp;<span className="text-warning">{this.props.techList['110']}</span>&nbsp;</div>
-        <div>Armor tech</div>
-        <div>&nbsp;<span className="text-warning">{this.props.techList['111']}</span>&nbsp;</div>
+
+      <div className="mini-techs-table-flex techs-nav">
+        <div>
+          <div title='Military tech' className={prefixClassName('weapons-tech')}></div>
+          <span className="text-success">{this.props.techList['109']}</span>
+        </div>
+        <div>
+          <div title='Shielding tech' className={prefixClassName('shield-tech')}></div>
+          <span className="text-success">{this.props.techList['110']}</span>
+        </div>
+        <div>
+          <div title='Armor tech' className={prefixClassName('armour-tech')}></div>
+          <span className="text-success">{this.props.techList['111']}</span>
+        </div>
       </div>
     )
   }

@@ -53,18 +53,18 @@ class EventComponent extends Component {
                 <p>{this.props.store.currentEvent.description}</p>
                 <div className="clear"></div>
                     <ul className="event-resources">
-                        <li className={event.metal?'':'hidden-item'}><img src={path+'metall.gif'} /><br /><small>Metal</small><br />
+                        <li className={event.metal?'':'hidden-item'}><div className='margin-center resource-img metal small'></div><small>Metal</small><br />
                             <span className={metalClass}>{metal_extra}{event.metal}</span>
                         </li>
-                        <li className={event.crystal?'':'hidden-item'}><img src={path+'kristall.gif'} /><br /><small>Crystal</small><br />
+                        <li className={event.crystal?'':'hidden-item'}><div className='margin-center resource-img crystal small'></div><small>Crystal</small><br />
                             <span className={crystalClass}>{crystal_extra}{event.crystal}</span>
                         </li>
                         <li className={event.deuterium?'':'hidden-item'}>
-                            <img src={path+'deuterium.gif'} /><br /><small>Deuterium</small><br />
-                            <span className={deuteriumClass}>{deuterium_extra}{event.deuterium}</span>
+                        <br /><small>Deuterium</small>
+                            <div className='margin-center resource-img deuterium small'></div><span className={deuteriumClass}>{deuterium_extra}{event.deuterium}</span>
                         </li>
                         <li className={event.spaceCredits?'':'hidden-item'}>
-                            <img src={path+'message.gif'} /><br /><small>Space Credits</small><br />
+                            <div className='margin-center resource-img dark-matter small'></div><small>Space Credits</small><br />
                             <span className={event.spaceCredits > 0 ? 'text-success':'text-error'}>{event.spaceCredits > 0 ? '+':''}{event.spaceCredits}</span>
                         </li>
                     </ul>

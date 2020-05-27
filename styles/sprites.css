@@ -31,7 +31,7 @@
     background-position-x: calc(var(--img_xs-size) * -5);
 }
 
-.tech.img.xs.armour-tech.impulse-drive {
+.tech.img.xs.impulse-drive {
     background-position-x: calc(var(--img_xs-size) * -6);
 }
 
@@ -76,12 +76,20 @@
     background-position-x: calc(var(--img_sm-size) * -2);
 }
 
+.resource-img.dark-matter {
+    background-position-x: calc(var(--img_sm-size) * -4);
+}
+
 .resource-img.crystal.small {
     background-position-x: calc(var(--image-width) * -1);
 }
 
 .resource-img.deuterium.small {
     background-position-x: calc(var(--image-width) * -2);
+}
+
+.resource-img.dark-matter.small {
+    background-position-x: calc(var(--image-width) * -4);
 }
 
 .img .small {

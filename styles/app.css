@@ -28,6 +28,10 @@
     display: none;
 }
 
+.margin-center {
+    margin: 0 auto;
+}
+
 .flex-container {
     display: flex;
     width: 100%;
@@ -45,10 +49,10 @@
 
 .selector-item {
     width: 100%;
+    margin-top: 16px;
 }
 
 .selector-item > div {
-    height: 48px;
 }
 
 .selector-item .inline {
@@ -64,11 +68,18 @@
 .selector-item .flex-row {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
 }
 
 .selector-item .flex-row .text-info, .flex-row .selector-item .flex-row .img {
-    align-self: end;
+    align-self: flex-end;
+}
+
+.selector-item .flex-row span.text-info {
+    max-width: 0.3rem;
+    overflow: visible;
+    z-index: 999999;
+    margin-bottom: -8px;
 }
 
 .selector-item .flex-row span.img-overlap {
@@ -85,7 +96,7 @@
 
 .mini-techs-table-flex {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     font-size: .625rem;
 }
@@ -269,12 +280,8 @@
     flex-wrap: wrap;
 }
 
-.techs-nav td {
-    line-height: 20px;
-}
-
-.techs-nav table {
-    font-size: 8px
+.techs-nav > div {
+    width: 48px;
 }
 
 .current_capacity {
