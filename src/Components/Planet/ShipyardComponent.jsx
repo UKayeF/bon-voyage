@@ -34,7 +34,6 @@ class ShipyardComponent extends Component {
             />
           )}
         </div>
-        <br/>
         <div>
           <span className={this.success ? 'text-success' : 'hidden'}>Thanks for buying!</span>
           <span className={this.successResources ? 'text-success' : 'hidden'}>Ships built!</span>
