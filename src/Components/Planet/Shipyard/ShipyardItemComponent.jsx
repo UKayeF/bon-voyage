@@ -14,7 +14,6 @@ class ShipyardItemComponent extends Component {
   render() {
 
     const shipId = this.props.shipId;
-    // const imgUrl = window.bvConfig.iconPath+shipId+'.gif';
     const shipName = makeCSSName(shipsToCode.get(parseInt(shipId)));
     const iconType = getIconType(parseInt(shipId));
     const className = `img ${iconType} ${shipName}`
