@@ -47,47 +47,47 @@
     width: 100%;
 }
 
-.selector-item {
+.selector-item, .trader-item {
     width: 100%;
     margin-top: 16px;
 }
 
-.selector-item > div {
+.selector-item > div, .trader-item > div {
 }
 
-.selector-item .inline {
+.selector-item .inline, .trader-item .inline  {
     display: inline;
 }
 
-.selector-item .ship-label {
+.selector-item .ship-label, .trader-item .ship-label {
     display: flex;
     justify-content: center;
     align-items: end;
 }
 
-.selector-item .flex-row {
+.selector-item .flex-row, .trader-item .flex-row {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-.selector-item .flex-row .text-info, .flex-row .selector-item .flex-row .img {
+.selector-item .flex-row .text-info, .trader-item .flex-row .text-info, .flex-row .selector-item .flex-row .img, .flex-row .trader-item .flex-row .img {
     align-self: flex-end;
 }
 
-.selector-item .flex-row span.text-info {
+.selector-item .flex-row span.text-info, .trader-item .flex-row span.text-info {
     max-width: 0.3rem;
     overflow: visible;
     z-index: 999999;
     margin-bottom: -8px;
 }
 
-.selector-item .flex-row span.img-overlap {
+.selector-item .flex-row span.img-overlap, .trader-item .flex-row span.img-overlap {
     position: absolute;
     left: 48px;
 }
 
-.selector-item .flex-row button {
+.selector-item .flex-row button, .trader-item .flex-row button {
     height: var(--image-width);
     width: var(--image-width);
     margin-top: 0;
@@ -99,6 +99,10 @@
     flex-direction: row;
     flex-wrap: wrap;
     font-size: .625rem;
+}
+
+.trader-item span.text-info {
+    margin: auto auto auto 0;
 }
 
 #holder .one-third {

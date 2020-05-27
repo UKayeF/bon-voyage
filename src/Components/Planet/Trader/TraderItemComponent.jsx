@@ -23,14 +23,20 @@ class TraderItemComponent extends Component {
     const className = `img ${iconType} ${shipName}`
 
     return (
-      <div>
-        <span className="name">{this.props.shipData.name}</span>
-        <div className={className}></div>
-        <span className="text-info">{this.props.store.playerFleet.shipsExpanded[shipId].amount}</span><br />
-        <span className="text-error">§ {this.getTradePrice()}</span>
-        <div className="mini-buttons" cellPadding="0" cellSpacing="0">
-          <button className="text-error" onClick={this.sellOne}>-1</button>
-          <button className="text-error" onClick={this.sellTen}>-10</button>
+      <div className='trader-item'>
+        <div className='container-fluid ship-label'>
+          <div className='row'>
+            <span className="name">{this.props.shipData.name}</span>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <div className='row flex-row'>
+            <div className={className}></div>
+            <span className="text-info">{this.props.store.playerFleet.shipsExpanded[shipId].amount}</span><br />
+            <span className="text-error">§ {this.getTradePrice()}</span>
+            <button className="text-error" onClick={this.sellOne}>-1</button>
+            <button className="text-error" onClick={this.sellTen}>-10</button>
+          </div>
         </div>
       </div>
     )
