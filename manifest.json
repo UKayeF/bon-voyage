@@ -1,0 +1,15 @@
+{
+  "short_name": "Bon Voyage",
+  "name": "Bon Voyage",
+  "icons": [
+    {
+      "src":"images/pathfinder.jpg",
+      "sizes": "200x200",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": "",
+  "background_color": "#000",
+  "Theme_color": "#536878",
+  "display": "standalone"
+}

@@ -10,7 +10,7 @@
 }
 
 .img {
-    background-image: url('../img/spritesheet.jpg');
+    background-image: url('../sprites/spritesheet.jpg');
     background-repeat: no-repeat;
     background-size: calc(var(--total-width) * .24) calc(var(--total-height) * .24);
     height: var(--image-width);
@@ -56,7 +56,7 @@
 }
 
  .resource-img {
-    background-image: url('../img/resource-sprites.png');
+    background-image: url('../sprites/resource-sprites.png');
     background-repeat: no-repeat;
     height: var(--img_sm-size);
     width: var(--img_sm-size);
