@@ -21,7 +21,7 @@ class ResearchLabComponent extends Component {
       <div className={this.props.visibility?'':'hidden'}>
         <h4>Research Lab</h4>
         <p>You can borrow some of our technologies, for a price.</p>
-        <div className="tbl-ships tbl-ships-space">
+        <div className="tbl-ships tbl-ships-space research-lab">
           <div>
             {this.validResearchLabTechs.map((x, i) =>
               <ResearchLabItemComponent store={this.props.store} tryToPurchaseItem={this.tryToPurchaseItem}
