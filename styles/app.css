@@ -237,8 +237,17 @@
     width: 100%;
 }
 
-.tbl-active-ships td {
+.tbl-active-ships span {
     font-size: 8px;
+}
+
+.ship-item {
+    display: flex;
+    align-items: flex-end;
+}
+
+.ship-item .ship-desc {
+    align-self: center;
 }
 
 .resource-fleet {
