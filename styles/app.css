@@ -105,6 +105,25 @@
     margin: auto auto auto 0;
 }
 
+.research-lab .container-fluid {
+    max-height: 48px;
+}
+
+.research-lab .row {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.research-lab span.text-info {
+    margin: auto auto 0 0;
+    align-self: flex-end;
+}
+
+.research-lab button {
+    height: 48px;
+    width: 48px;
+}
+
 #holder .one-third {
     width: 33%;
 }

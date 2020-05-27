@@ -24,13 +24,19 @@ class ResearchLabItemComponent extends Component {
 
 
     return (
-      <div className='research-lab'>
-        <span className="name">{this.props.techData.name}</span>
-        <div className={className}></div>
-        <span className="text-info">{this.props.store.playerFleet.techs[techId]}</span><br />
-        <span className="text-warning">§ {this.currentPrice}</span>
-        <div className="mini-buttons" cellPadding="0" cellSpacing="0">
-          <button className="text-success" onClick={this.addOne}>+1</button>
+      <div className='research-lab selector-item'>
+        <div className='container-fluid'>
+          <div className='row'>
+            <span className="name">{this.props.techData.name}</span>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <div className='row flex-row'>
+            <div className={className}></div>
+            <span className="text-info">{this.props.store.playerFleet.techs[techId]}</span>
+            <span className="text-warning">§ {this.currentPrice}</span>
+            <button className="text-success" onClick={this.addOne}>+1</button>
+          </div>
         </div>
       </div>
     )
