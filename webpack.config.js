@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -27,24 +28,53 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'template.html',
     }),
-    new CopyWebpackPlugin(
-      {
-        patterns: [
-          {
-            from: 'styles',
-            to: 'styles',
-          },
-          {
-            from: 'sprites',
-            to: 'sprites',
-          },
-          {
-            from: 'scripts',
-            to: 'scripts',
-          },
-        ],
-      },
-    ),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'styles',
+          to: 'styles',
+        },
+        {
+          from: 'sprites',
+          to: 'sprites',
+        },
+        {
+          from: 'scripts',
+          to: 'scripts',
+        },
+        {
+          from: 'manifest.json',
+          to: 'manifest.json',
+        },
+        {
+          from: 'service-worker.js',
+          to: 'service-worker.js',
+        },
+      ],
+    }),
+    new WorkboxPlugin.InjectManifest({
+      swSrc: './service-worker.js',
+      include: [
+        /\.html$/,
+        /\.js$/,
+        /\.css$/,
+        /\.jpg$/,
+        /\.png$/,
+      ],
+      maximumFileSizeToCacheInBytes: 100 * 1024 * 1024
+    }),
+    new WorkboxPlugin.GenerateSW({
+      runtimeCaching: [{
+        urlPattern: /\.(?:png|jpg|jpeg|svg|css|js|html)$/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'resources',
+          expiration: {
+            maxEntries: 1E9,
+          }
+        }
+      }],
+    })
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
