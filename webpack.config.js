@@ -52,29 +52,6 @@ module.exports = {
         },
       ],
     }),
-    new WorkboxPlugin.InjectManifest({
-      swSrc: './service-worker.js',
-      include: [
-        /\.html$/,
-        /\.js$/,
-        /\.css$/,
-        /\.jpg$/,
-        /\.png$/,
-      ],
-      maximumFileSizeToCacheInBytes: 100 * 1024 * 1024
-    }),
-    new WorkboxPlugin.GenerateSW({
-      runtimeCaching: [{
-        urlPattern: /\.(?:png|jpg|jpeg|svg|css|js|html)$/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'resources',
-          expiration: {
-            maxEntries: 1E9,
-          }
-        }
-      }],
-    })
   ],
   resolve: {
     extensions: ['*', '.js', '.jsx'],
