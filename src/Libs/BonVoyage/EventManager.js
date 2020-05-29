@@ -9,7 +9,7 @@ import {shipAmounts, types} from '../../utils/shipAmounts';
 
 export default class EventManager {
 
-  static EVENT_PROBABILITY = 0.06;
+  static EVENT_PROBABILITY = 0.08;
 
   static types = {
     'supernova': {
@@ -576,12 +576,12 @@ export default class EventManager {
   }
 
   static getMaxProbableSuperLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 1000);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 2000);
     return Math.max(xpLevel * 10, 1);
   }
 
   static getMaxProbableLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 2000);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 4000);
     return Math.max(xpLevel * 30, 1);
   }
 
