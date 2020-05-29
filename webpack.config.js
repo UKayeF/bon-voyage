@@ -51,9 +51,9 @@ module.exports = {
           to: 'service-worker.js',
         },
         {
-          from: 'pathfinder.jpg',
-          to: 'images/pathfinder.jpg',
-        }
+          from: 'background',
+          to: 'background',
+        },
       ],
     }),
   ],
