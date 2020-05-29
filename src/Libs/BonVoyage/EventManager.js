@@ -476,8 +476,8 @@ export default class EventManager {
       if(rn - pathfinderBias < 0.36){ return 'add-space-credits'; } // 12%
     }
     else {
-      if(rn < 0.01){ return 'supernova'; } // 1%
-      if(rn < 0.02){ return 'black-hole'; } // 1%
+      if(rn < 0.005){ return 'supernova'; } // 1%
+      if(rn < 0.01){ return 'black-hole'; } // 1%
       if(rn < 0.06){ return 'remove-ships'; } // 4%
       if(rn < 0.11){ return 'remove-space-credits'; } // 5%
       if(rn < 0.16){ return 'remove-resource'; } // 5%
