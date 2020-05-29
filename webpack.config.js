@@ -50,6 +50,10 @@ module.exports = {
           from: 'service-worker.js',
           to: 'service-worker.js',
         },
+        {
+          from: 'pathfinder.jpg',
+          to: 'images/pathfinder.jpg',
+        }
       ],
     }),
   ],
