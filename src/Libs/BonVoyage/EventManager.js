@@ -671,7 +671,6 @@ export default class EventManager {
           const { type } = shipAmounts[idx];
           const max = getProbableShipCount(type);
           const min = max / 3;
-          console.log(`${idx}: { min: ${min}, max: ${max} }`)
           realFleet[idx] = EventManager.randomIntFromInterval(min, max);
         }
       }
