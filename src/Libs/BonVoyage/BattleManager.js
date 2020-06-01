@@ -105,7 +105,6 @@ class BattleManager {
 
     event.metal = harvestedMetal;
     event.crystal = harvestedCrystal;
-    this.store.storeResources();
 
     //Do something with wins - draws or loses
     if(ally_difference){
