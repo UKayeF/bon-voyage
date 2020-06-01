@@ -671,7 +671,7 @@ export default class EventManager {
         else {
           let factor = 1;
           if (idx == '213') {
-            let amDeathStars = Math.max(
+            let amDeathStars = Math.min(
               this.store.playerFleet.shipsExpanded['214'].amount,
               51
             );
