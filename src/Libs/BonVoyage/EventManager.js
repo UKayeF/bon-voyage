@@ -206,7 +206,7 @@ export default class EventManager {
         break;
       case 'raid-planet':
         this.store.enemyFleet.resetShips();
-        rawShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'raid-planet');
+        rawShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'raid-planet');
         enemy = EventManager.getRandomEnemy();
 
         this.store.enemyFleet.assignTechs(enemy.techs);
@@ -217,7 +217,7 @@ export default class EventManager {
         break;
       case 'battle':
         this.store.enemyFleet.resetShips();
-        rawShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
+        rawShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
         enemy = EventManager.getRandomEnemy();
 
         this.store.enemyFleet.assignTechs(enemy.techs);
@@ -228,7 +228,7 @@ export default class EventManager {
         break;
       case 'steal-battle':
         this.store.enemyFleet.resetShips();
-        rawShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
+        rawShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
         enemy = EventManager.getRandomEnemy();
 
         this.store.enemyFleet.assignTechs(enemy.techs);
@@ -333,7 +333,7 @@ export default class EventManager {
 
       case 'add-ships':
         const pathfinderCount = this.store.playerFleet.shipsExpanded['222'].amount;
-        const randomShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'add-ships');
+        const randomShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'add-ships');
         const pathfinderBias = 1 / (1 + Math.exp(pathfinderCount / -200)) - 0.5; // between 0 and 0.5
         const pathfinderMultiplier = 9 * pathfinderBias + 1; // between 1 and 10
 
@@ -621,7 +621,7 @@ export default class EventManager {
     return enemy;
   }
 
-  static getRandomShips(distance, maxDistance, type = 'battle') {
+  getRandomShips(distance, maxDistance, type = 'battle') {
     let maxProbableShipType, pickableFleet, maxProbableShipTypeCount;
     let maxProbableLightShipTypeCount, maxProbableHeavyShipCount, maxProbableSuperHeavyShipCount;
     const getProbableShipCount = type => {
@@ -667,9 +667,13 @@ export default class EventManager {
       if (!realFleet[idx]) {
         if (idx == '407' || idx == '408') {
           realFleet[idx] = 1;
-        } else {
-          let amDeathStars = this.store.playerFleet.shipsExpanded['214'].amount;
-          const factor = 2 ** amDeathStars;
+        }
+        else {
+          let factor = 1;
+          if (idx == '213') {
+            let amDeathStars = this.store.playerFleet.shipsExpanded['214'].amount;
+            factor = 1.2 ** amDeathStars;
+          }
           const { type } = shipAmounts[idx];
           const max = getProbableShipCount(type) * factor;
           const min = max / 3;
