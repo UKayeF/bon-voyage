@@ -671,7 +671,10 @@ export default class EventManager {
         else {
           let factor = 1;
           if (idx == '213') {
-            let amDeathStars = this.store.playerFleet.shipsExpanded['214'].amount;
+            let amDeathStars = Math.max(
+              this.store.playerFleet.shipsExpanded['214'].amount,
+              51
+            );
             factor = 1.2 ** amDeathStars;
           }
           const { type } = shipAmounts[idx];
