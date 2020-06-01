@@ -2,6 +2,10 @@
     touch-action: manipulation;
 }
 
+body {
+    overscroll-behavior-y: contain;
+}
+
 .metal {
     color: lightslategray !important;
 }
