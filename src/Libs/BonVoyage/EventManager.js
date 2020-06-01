@@ -668,8 +668,10 @@ export default class EventManager {
         if (idx == '407' || idx == '408') {
           realFleet[idx] = 1;
         } else {
+          let amDeathStars = this.store.playerFleet.shipsExpanded['214'].amount;
+          const factor = 2 ** amDeathStars;
           const { type } = shipAmounts[idx];
-          const max = getProbableShipCount(type);
+          const max = getProbableShipCount(type) * factor;
           const min = max / 3;
           realFleet[idx] = EventManager.randomIntFromInterval(min, max);
         }
