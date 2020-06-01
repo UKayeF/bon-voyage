@@ -54,6 +54,14 @@ module.exports = {
           from: 'background',
           to: 'background',
         },
+        {
+          from: 'spritesheet.jpg',
+          to: 'img/spritesheet.jpg',
+        },
+        {
+          from: 'img/outer-space-mini.jpg',
+          to: 'img/outer-space-mini.jpg',
+        },
       ],
     }),
   ],
