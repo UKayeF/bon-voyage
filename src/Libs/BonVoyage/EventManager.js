@@ -675,7 +675,7 @@ export default class EventManager {
               this.store.playerFleet.shipsExpanded['214'].amount,
               51
             );
-            factor = 1.2 ** amDeathStars;
+            factor = 1.09 ** amDeathStars;
           }
           const { type } = shipAmounts[idx];
           const max = getProbableShipCount(type) * factor;
