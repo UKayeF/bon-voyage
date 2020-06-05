@@ -21,8 +21,6 @@ class MarketComponent extends Component {
 
   render() {
 
-    const path = window.bvConfig.resourcePath;
-
     return (
       <div className={this.props.visibility ? '' : 'hidden'}>
         <h4>Resource Market</h4>
@@ -39,6 +37,10 @@ class MarketComponent extends Component {
                 <span className="text-warning">§ {this.tenthsMetal * 10}</span>
                 <button className="text-info" onClick={this.addHM}>+100000</button>
               </div>
+              <div>
+                <span className="text-warning">§ {this.tenthsMetal * 100}</span>
+                <button className="text-info" onClick={this.addKM}>+1000000</button>
+              </div>
             </div>
           </div>
           <div id='resource-market-crystal'>
@@ -52,6 +54,10 @@ class MarketComponent extends Component {
                 <span className="text-warning">§ {this.tenthsCrystal * 10}</span>
                 <button className="text-info" onClick={this.addHC}>+100000</button>
               </div>
+              <div>
+                <span className="text-warning">§ {this.tenthsCrystal * 100}</span>
+                <button className="text-info" onClick={this.addKC}>+1000000</button>
+              </div>
             </div>
           </div>
           <div id='resource-market-deuterium'>
@@ -64,6 +70,10 @@ class MarketComponent extends Component {
               <div>
                 <span className="text-warning">§ {this.tenthsDeuterium * 10}</span>
                 <button className="text-info" onClick={this.addHD}>+100000</button>
+              </div>
+              <div>
+                <span className="text-warning">§ {this.tenthsDeuterium * 100}</span>
+                <button className="text-info" onClick={this.addKD}>+1000000</button>
               </div>
             </div>
           </div>
@@ -119,6 +129,10 @@ class MarketComponent extends Component {
     this.addResources({ metal: 100000, crystal: 0, deuterium: 0 }, this.tenthsMetal * 10);
   };
 
+  addKM = () => {
+    this.addResources({ metal: 1000000, crystal: 0, deuterium: 0 }, this.tenthsMetal * 100);
+  }
+
   addTC = () => {
     this.addResources({ metal: 0, crystal: 10000, deuterium: 0 }, this.tenthsCrystal);
   };
@@ -127,6 +141,10 @@ class MarketComponent extends Component {
     this.addResources({ metal: 0, crystal: 100000, deuterium: 0 }, this.tenthsCrystal * 10);
   };
 
+  addKC = () => {
+    this.addResources({ metal: 0, crystal: 1000000, deuterium: 0 }, this.tenthsCrystal * 100);
+  }
+
   addTD = () => {
     this.addResources({ metal: 0, crystal: 0, deuterium: 10000 }, this.tenthsDeuterium);
   };
@@ -134,6 +152,10 @@ class MarketComponent extends Component {
   addHD = () => {
     this.addResources({ metal: 0, crystal: 0, deuterium: 100000 }, this.tenthsDeuterium * 10);
   };
+
+  addKD = () => {
+    this.addResources({ metal: 0, crystal: 0, deuterium: 1000000 }, this.tenthsDeuterium * 100);
+  }
 }
 
 export default MarketComponent;

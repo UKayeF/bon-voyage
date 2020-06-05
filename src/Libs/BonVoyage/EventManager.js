@@ -1,96 +1,125 @@
-import { action } from 'mobx';
+import {action} from 'mobx';
 
 import GameState from './Model/GameState';
 import ExchangeRate from './ExchangeRate';
 import Space from './Model/Space';
 import Fleet from './Model/Fleet';
 import Event from './Model/Event';
+import {shipAmounts, types} from '../../utils/shipAmounts';
 
 export default class EventManager {
 
-  static EVENT_PROBABILITY = 0.15;
+  static EVENT_PROBABILITY = 0.08;
 
   static types = {
     'supernova': {
-      dialogs: [{title:"Giant Star collapsing",description:"Will we be able to escape?"}],
+      dialogs: [{title: 'Giant Star collapsing', description: 'Will we be able to escape?'}],
       actions: ['continue']
     },
     'black-hole': {
       dialogs: [
-        {title:"Black Hole",description:'Wrong coordinates!! Init evasion maneuvers!'},
-        {title:"Black Hole",description:'Our maps of this sector are wrong, and now we have encountered a Black Hole.'}
+        {title: 'Black Hole', description: 'Wrong coordinates!! Init evasion maneuvers!'},
+        {
+          title: 'Black Hole',
+          description: 'Our maps of this sector are wrong, and now we have encountered a Black Hole.'
+        }
       ],
       actions: ['continue']
     },
-    'remove-ships' : {
+    'remove-ships': {
       dialogs: [
-        {title:"Ships lost",description:"Some ships had a major malfunction"},
-        {title:"Ships lost",description:"A part of our fleet was destroyed by an explosive Esp. Probe sent by Pirates"}
+        {title: 'Ships lost', description: 'Some ships had a major malfunction'},
+        {
+          title: 'Ships lost',
+          description: 'A part of our fleet was destroyed by an explosive Esp. Probe sent by Pirates'
+        }
       ],
       actions: ['continue']
     },
     'remove-space-credits': {
       dialogs: [
-        {title:"We lost Space Credits",
-          description:"Solar system limits. In order to continue we had to pay a toll of %s Space Credits to the Confederates"},
-        {title:"We lost Space Credits",
-          description:"An Enemy Espionage Probe stole %s Space Credits from us, we were not able to track it."}],
+        {
+          title: 'We lost Space Credits',
+          description: 'Solar system limits. In order to continue we had to pay a toll of %s Space Credits to the Confederates'
+        },
+        {
+          title: 'We lost Space Credits',
+          description: 'An Enemy Espionage Probe stole %s Space Credits from us, we were not able to track it.'
+        }],
       actions: ['continue']
     },
     'add-space-credits': {
       dialogs: [
-        {title:"Free Space Credits",description:"We found our lost wallet with %s Space Credits!"},
-        {title:"Free Space Credits",description:"Bank Error in your favor. Collect %s Space Credits. (Actually, that\'s not how it works in real life)"}
+        {title: 'Free Space Credits', description: 'We found our lost wallet with %s Space Credits!'},
+        {
+          title: 'Free Space Credits',
+          description: 'Bank Error in your favor. Collect %s Space Credits. (Actually, that\'s not how it works in real life)'
+        }
       ],
       actions: ['continue']
     },
-    'remove-resource' : {
+    'remove-resource': {
       dialogs: [
-        {title:"Lost some resources,",description:"A storage tank exploded, and we lost %s %t"},
-        {title:"Lost some resources",description:"Pirate Probes took away some of our resources!"}
+        {title: 'Lost some resources,', description: 'A storage tank exploded, and we lost %s %t'},
+        {title: 'Lost some resources', description: 'Pirate Probes took away some of our resources!'}
       ],
       actions: ['continue']
     },
-    'add-ships' : {
+    'add-ships': {
       dialogs: [
-        {"title":"New Ships!","description":"We found operational ships in a desert planet!"},
-        {"title":"New Ships!","description":"A group of mercenaries want to join our party"}
+        {'title': 'New Ships!', 'description': 'We found operational ships in a desert planet!'},
+        {'title': 'New Ships!', 'description': 'A group of mercenaries want to join our party'}
       ],
-      actions: ['take','skip']
+      actions: ['take', 'skip']
     },
     'add-resource': {
       dialogs: [
-        {"title":"Found some resources","description":"There is a lonely floating container with %s of %t"},
-        {"title":"Found some resources","description":"We found an asteroid with %s of %t"}],
+        {'title': 'Found some resources', 'description': 'There is a lonely floating container with %s of %t'},
+        {'title': 'Found some resources', 'description': 'We found an asteroid with %s of %t'}],
       actions: ['take', 'skip']
     },
     'steal-battle': {
-      dialogs: [{"title":"Battle","description":"We caught a fleet of %c which stole %s %t from us a few moments ago"}],
-      actions: ['attack','flee','negotiate']
+      dialogs: [{
+        'title': 'Battle',
+        'description': 'We caught a fleet of %c which stole %s %t from us a few moments ago'
+      }],
+      actions: ['attack', 'flee', 'negotiate']
     },
     'slow-down': {
-      dialogs: [{title:"Malfunction", description:"One of the motors of the main ship failed, this will slow down the mission for a while"}],
+      dialogs: [{
+        title: 'Malfunction',
+        description: 'One of the motors of the main ship failed, this will slow down the mission for a while'
+      }],
       actions: ['continue']
     },
     'speed-up': {
-      dialogs: [{title:"Vortex", description: "A vortex trapped our fleet. We are moving at a higher speed!"}],
+      dialogs: [{title: 'Vortex', description: 'A vortex trapped our fleet. We are moving at a higher speed!'}],
       actions: ['continue']
     },
     'raid-planet': {
-      dialogs: [{title:"Fortified Planet",description:"We found a fortified planet of %c in the way"}],
+      dialogs: [{title: 'Fortified Planet', description: 'We found a fortified planet of %c in the way'}],
       actions: ['attack', 'flee']
     },
     'battle': {
-      dialogs: [{"title":"Battle","description":"We encountered a fleet of %c. There is a bounty on them"}],
+      dialogs: [{'title': 'Battle', 'description': 'We encountered a fleet of %c. There is a bounty on them'}],
       actions: ['attack', 'flee']
     },
     'nothing': {
       dialogs: [
-        {title:"Space Radio",description:"Probes are very useful, you should bring some with you if possible..."},
-        {title:"Break Time",description:'The Commander organized an Essay Contest about the Space. He won.'},
-        {title:"Confederate Fleet",description:"A Confederate Fleet was seen nearby. They have Recyclers and Colony Ships, with low running speed."},
-        {title:"Exotic Planet",description:"We found a planet with weird living things. Amazing! Nothing we have ever seen before..."},
-        {title:"Space Nebula",description:"There is a shiny Nebula nearby, and we decided to take some photos of it"}],
+        {title: 'Space Radio', description: 'Probes are very useful, you should bring some with you if possible...'},
+        {title: 'Break Time', description: 'The Commander organized an Essay Contest about the Space. He won.'},
+        {
+          title: 'Confederate Fleet',
+          description: 'A Confederate Fleet was seen nearby. They have Recyclers and Colony Ships, with low running speed.'
+        },
+        {
+          title: 'Exotic Planet',
+          description: 'We found a planet with weird living things. Amazing! Nothing we have ever seen before...'
+        },
+        {
+          title: 'Space Nebula',
+          description: 'There is a shiny Nebula nearby, and we decided to take some photos of it'
+        }],
       actions: ['continue']
     },
     'custom': {
@@ -109,48 +138,48 @@ export default class EventManager {
       maxTech: 10,
       name: 'The Scourge'
     },
-    'quadrant-12':{
+    'quadrant-12': {
       minTech: 10,
       maxTech: 13,
       name: 'Quadrant 12'
     }
   };
 
-  static validEventResources = ['metal','crystal','deuterium'];
-  static validRemovableShipsArray = [202,203,204,205,206,210];
+  static validEventResources = ['metal', 'crystal', 'deuterium'];
+  static validRemovableShipsArray = [202, 203, 204, 205, 206, 210];
   static validRemovableShips = {
-    '202':{min:1,max:5},
-    '203':{min:1,max:2},
-    '204':{min:1,max:20},
-    '205':{min:1,max:10},
-    '206':{min:1,max:2},
-    '207':{min:1,max:1},
-    '210':{min:1,max:20},
-    '215':{min:1,max:1}
+    '202': {min: 1, max: 5},
+    '203': {min: 1, max: 2},
+    '204': {min: 1, max: 20},
+    '205': {min: 1, max: 10},
+    '206': {min: 1, max: 2},
+    '207': {min: 1, max: 1},
+    '210': {min: 1, max: 20},
+    '215': {min: 1, max: 1}
   };
-  static validObtainableShipsArray = [202,203,204,205,206,210,211,213,215,221,222];
+  static validObtainableShipsArray = [202, 203, 204, 205, 206, 210, 211, 213, 215, 221, 222];
   static validObtainableShips = {
-    '202':{min:1,max:50},
-    '203':{min:1,max:25},
-    '204':{min:1,max:200},
-    '205':{min:1,max:100},
-    '206':{min:1,max:20},
-    '207':{min:1,max:20},
-    '210':{min:1,max:200},
-    '211':{min:1,max:5},
-    '213':{min:1,max:25},
-    '215':{min:1,max:10},
-    '221':{min:1,max:10},
-    '222':{min:5,max:50}
+    '202': {min: 1, max: 50},
+    '203': {min: 1, max: 25},
+    '204': {min: 1, max: 200},
+    '205': {min: 1, max: 100},
+    '206': {min: 1, max: 20},
+    '207': {min: 1, max: 20},
+    '210': {min: 1, max: 200},
+    '211': {min: 1, max: 5},
+    '213': {min: 1, max: 25},
+    '215': {min: 1, max: 10},
+    '221': {min: 1, max: 10},
+    '222': {min: 5, max: 50}
   };
 
   after = null;
 
-  constructor(store){
+  constructor(store) {
     this.store = store;
   }
 
-  @action init(type, params){
+  @action init(type, params) {
     let event = this.store.currentEvent, resource_name, item, amount, result, idx, ship_type,
       descriptions, description, rawShips, enemy, priceList = window.bvConfig.shipData;
     event.metal = 0;
@@ -161,9 +190,9 @@ export default class EventManager {
     let gameState = GameState.states.event;
 
     event.resetActions();
-    if(type!='custom' && EventManager.types[type] ){
+    if (type != 'custom' && EventManager.types[type]) {
       descriptions = EventManager.types[type];
-      description = descriptions.dialogs[Math.random() * descriptions.dialogs.length|0];
+      description = descriptions.dialogs[Math.random() * descriptions.dialogs.length | 0];
       event.title = description.title;
       event.description = description.description;
       event.enableActions(descriptions.actions);
@@ -171,13 +200,13 @@ export default class EventManager {
 
     event.type = type;
 
-    switch(type) {
+    switch (type) {
       case 'nothing':
         this.after = Event.nothingAction;
         break;
       case 'raid-planet':
         this.store.enemyFleet.resetShips();
-        rawShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'raid-planet');
+        rawShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'raid-planet');
         enemy = EventManager.getRandomEnemy();
 
         this.store.enemyFleet.assignTechs(enemy.techs);
@@ -188,7 +217,7 @@ export default class EventManager {
         break;
       case 'battle':
         this.store.enemyFleet.resetShips();
-        rawShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
+        rawShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
         enemy = EventManager.getRandomEnemy();
 
         this.store.enemyFleet.assignTechs(enemy.techs);
@@ -199,7 +228,7 @@ export default class EventManager {
         break;
       case 'steal-battle':
         this.store.enemyFleet.resetShips();
-        rawShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
+        rawShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance);
         enemy = EventManager.getRandomEnemy();
 
         this.store.enemyFleet.assignTechs(enemy.techs);
@@ -227,7 +256,7 @@ export default class EventManager {
         event[resource_name] = amount;
 
         event.description = ((event.description.replace('%s', amount)).replace('%t', resource_name))
-          +". Do we have enough storage available?";
+          + '. Do we have enough storage available?';
         this.after = Event.addResourceAction;
         break;
 
@@ -236,7 +265,7 @@ export default class EventManager {
           gameState = GameState.states.space;
           this.store.pastEvents.push({
             time: this.store.playerFleet.timeUnit,
-            message: "Thieves detected! They ran away!", "type": 'warning'
+            message: 'Thieves detected! They ran away!', 'type': 'warning'
           });
           break;
         }
@@ -265,7 +294,7 @@ export default class EventManager {
           gameState = GameState.states.space;
           this.store.pastEvents.push({
             time: this.store.playerFleet.timeUnit,
-            message: "Thieves detected! They ran away!", "type": 'warning'
+            message: 'Thieves detected! They ran away!', 'type': 'warning'
           });
           break;
         }
@@ -275,8 +304,8 @@ export default class EventManager {
           gameState = GameState.states.space;
           this.store.pastEvents.push({
             time: this.store.playerFleet.timeUnit,
-            message: "We take some photos!",
-            "type": 'warning'
+            message: 'We take some photos!',
+            'type': 'warning'
           });
           break;
         }
@@ -304,7 +333,7 @@ export default class EventManager {
 
       case 'add-ships':
         const pathfinderCount = this.store.playerFleet.shipsExpanded['222'].amount;
-        const randomShips = EventManager.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'add-ships');
+        const randomShips = this.getRandomShips(this.store.playerFleet.distance, Space.defaultDistance, 'add-ships');
         const pathfinderBias = 1 / (1 + Math.exp(pathfinderCount / -200)) - 0.5; // between 0 and 0.5
         const pathfinderMultiplier = 9 * pathfinderBias + 1; // between 1 and 10
 
@@ -322,8 +351,8 @@ export default class EventManager {
           this.store.pastEvents.push(
             {
               time: this.store.playerFleet.timeUnit,
-              message: "We take some photos!",
-              "type": 'warning'
+              message: 'We take some photos!',
+              'type': 'warning'
             });
           break;
         }
@@ -345,7 +374,7 @@ export default class EventManager {
           gameState = GameState.states.space;
           this.store.pastEvents.push({
             time: this.store.playerFleet.timeUnit,
-            message: "An enemy probe passed by!", "type": 'warning'
+            message: 'An enemy probe passed by!', 'type': 'warning'
           });
           break;
         }
@@ -357,7 +386,7 @@ export default class EventManager {
           gameState = GameState.states.space;
           this.store.pastEvents.push({
             time: this.store.playerFleet.timeUnit,
-            message: "We detected a Super Nova explosion and escaped!", "type": 'warning'
+            message: 'We detected a Super Nova explosion and escaped!', 'type': 'warning'
           });
           break;
         }
@@ -366,11 +395,12 @@ export default class EventManager {
         this.after = Event.superNovaAction;
         break;
       case 'black-hole':
-        if(this.store.playerFleet.shipsExpanded['210'].amount){
+        if (this.store.playerFleet.shipsExpanded['210'].amount) {
           gameState = GameState.states.space;
           this.store.pastEvents.push({
-            time:this.store.playerFleet.timeUnit,
-            message:"We detected a Black Hole and escaped!","type":'warning'});
+            time: this.store.playerFleet.timeUnit,
+            message: 'We detected a Black Hole and escaped!', 'type': 'warning'
+          });
           break;
         }
         event.description = event.description + '. Survival chance: 80%';
@@ -379,14 +409,14 @@ export default class EventManager {
       case 'custom':
         event.title = params.title;
         event.description = params.description;
-        event.enableActions( params.actions );
-        if(params.before){
+        event.enableActions(params.actions);
+        if (params.before) {
           params.before(store);
         }
         this.after = params.after;
         break;
       default:
-        console.log("Unknown type", eventType);
+        console.log('Unknown type', eventType);
         gameState = GameState.states.space;
         break;
     }
@@ -394,25 +424,25 @@ export default class EventManager {
     return gameState;
   }
 
-  @action trigger(action){
-    if(this.after){
+  @action trigger(action) {
+    if (this.after) {
       this.after(this.store, this.store.currentEvent, action);
     }
   }
 
-  @action removeRandomResources(cap, canRecover=false){
+  @action removeRandomResources(cap, canRecover = false) {
     let amount;
     let item = Math.floor(Math.random() * 3);
     let resource_name = EventManager.validEventResources[item];
     do {
-      if(canRecover){
-        amount = Math.min(EventManager.randomIntFromInterval(4000,40000), this.store.playerFleet[resource_name], cap);
+      if (canRecover) {
+        amount = Math.min(EventManager.randomIntFromInterval(4000, 40000), this.store.playerFleet[resource_name], cap);
       } else {
-        amount = Math.min(EventManager.randomIntFromInterval(3000,cap), this.store.playerFleet[resource_name]);
+        amount = Math.min(EventManager.randomIntFromInterval(3000, cap), this.store.playerFleet[resource_name]);
       }
 
-      if(!amount){
-        if(this.store.playerFleet.deuterium){
+      if (!amount) {
+        if (this.store.playerFleet.deuterium) {
           resource_name = 'deuterium';
         } else {
           break;
@@ -420,14 +450,13 @@ export default class EventManager {
       } else {
         break;
       }
-    } while(true);
-    if(!amount)
-    {
+    } while (true);
+    if (!amount) {
       //If there is no deuterium, why are we here?
       return {amount: 0, resource_name: null};
     }
     this.store.playerFleet[resource_name] -= amount; //We remove the amount for now
-    if(canRecover){
+    if (canRecover) {
       this.store.currentEvent[resource_name] = amount; //You might recover it back
     } else {
       this.store.currentEvent[resource_name] = -amount;
@@ -436,13 +465,13 @@ export default class EventManager {
   }
 
 
-  @action calcRewardValueAndAssing(rawShips, type){
+  @action calcRewardValueAndAssing(rawShips, type) {
     let priceList = window.bvConfig.shipData, rewardValue = 0;
 
-    let resources = {metal:0,crystal:0,deuterium:0};
-    for(let idx in rawShips){
-      if(!rawShips.hasOwnProperty(idx)) continue;
-      if(!rawShips[idx]) continue;
+    let resources = {metal: 0, crystal: 0, deuterium: 0};
+    for (let idx in rawShips) {
+      if (!rawShips.hasOwnProperty(idx)) continue;
+      if (!rawShips[idx]) continue;
 
       resources.metal = rawShips[idx] * priceList[idx].metal;
       resources.crystal = rawShips[idx] * priceList[idx].crystal;
@@ -451,7 +480,7 @@ export default class EventManager {
       this.store.enemyFleet.shipsExpanded[idx].amount = rawShips[idx];
       rewardValue += ExchangeRate.resourcesToSpaceCredits(resources, ExchangeRate.NORMAL);
     }
-    switch(type){
+    switch (type) {
       case 'pirates':
         rewardValue = rewardValue / 1.25;
         break;
@@ -464,24 +493,41 @@ export default class EventManager {
     return rewardValue;
   }
 
-  getRandomEventId(){
+  getRandomEventId() {
     const rn = Math.random();
     const pathfinderCount = this.store.playerFleet.shipsExpanded['222'].amount;
-    const pathfinderBias = 1/(1+ Math.exp(pathfinderCount / -200)) - 0.5; // between 0 and 0.5
+    const pathfinderBias = 1 / (1 + Math.exp(pathfinderCount / -200)) - 0.5; // between 0 and 0.5
     const goodEvent = rn + pathfinderBias > 0.8;
 
-    if (goodEvent){
-      if(rn - pathfinderBias < 0.12){ return 'add-ships'; } // 12%
-      if(rn - pathfinderBias < 0.24){ return 'add-resource'; } // 12%
-      if(rn - pathfinderBias < 0.36){ return 'add-space-credits'; } // 12%
-    }
-    else {
-      if(rn < 0.01){ return 'supernova'; } // 1%
-      if(rn < 0.02){ return 'black-hole'; } // 1%
-      if(rn < 0.06){ return 'remove-ships'; } // 4%
-      if(rn < 0.11){ return 'remove-space-credits'; } // 5%
-      if(rn < 0.16){ return 'remove-resource'; } // 5%
-      if(rn < 0.21){ return 'steal-battle'; }
+    if (goodEvent) {
+      if (rn - pathfinderBias < 0.12) {
+        return 'add-ships';
+      } // 12%
+      if (rn - pathfinderBias < 0.24) {
+        return 'add-resource';
+      } // 12%
+      if (rn - pathfinderBias < 0.36) {
+        return 'add-space-credits';
+      } // 12%
+    } else {
+      if (rn < 0.005) {
+        return 'supernova';
+      } // 1%
+      if (rn < 0.01) {
+        return 'black-hole';
+      } // 1%
+      if (rn < 0.06) {
+        return 'remove-ships';
+      } // 4%
+      if (rn < 0.11) {
+        return 'remove-space-credits';
+      } // 5%
+      if (rn < 0.16) {
+        return 'remove-resource';
+      } // 5%
+      if (rn < 0.21) {
+        return 'steal-battle';
+      }
     }
 
     // "neutral events"
@@ -505,126 +551,136 @@ export default class EventManager {
         return 'add-resource';
       }
     }
-    if(rn < 0.90){ return 'battle'; }
+    if (rn < 0.90) {
+      return 'battle';
+    }
     return 'nothing';
   }
 
-  static randomIntFromInterval(min,max)
-  {
-    return Math.floor(Math.random()*(max-min+1)+min);
+  static randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  static getMaxProbableResourceAmount(distance, maxDistance){
-    const xpLevel = 1.09 ** ((maxDistance - distance)/12000);
+  static getMaxProbableResourceAmount(distance, maxDistance) {
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 12000);
     return Math.max(xpLevel * 70000, 1);
   }
 
-  static getMaxProbableShipType(length, distance, maxDistance){
+  static getMaxProbableShipType(length, distance, maxDistance) {
 
-    return 3 + Math.min(Math.ceil(Math.sqrt( ((maxDistance - distance)/maxDistance)*100 )*length/10), length);
+    return 3 + Math.min(Math.ceil(Math.sqrt(((maxDistance - distance) / maxDistance) * 100) * length / 10), length);
   }
 
-  static getMaxProbableShipTypeCount(distance, maxDistance, extra=1){
+  static getMaxProbableShipTypeCount(distance, maxDistance, extra = 1) {
     return 20;
   }
 
-  static getMaxProbableLightShipAmount(distance, maxDistance){
-    const xpLevel = 1.09 ** ((maxDistance - distance)/12000);
-    return Math.max(xpLevel * 50, 1);
+  static getMaxProbableSuperLightShipAmount(distance, maxDistance) {
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 2000);
+    return Math.max(xpLevel * 10, 1);
   }
 
-  static getMaxProbableShipAmount(distance, maxDistance){
-    const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-    return Math.max(xpLevel * 20, 1);
+  static getMaxProbableLightShipAmount(distance, maxDistance) {
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 4000);
+    return Math.max(xpLevel * 30, 1);
   }
 
-  static getMaxProbableHeavyShipCount(distance, maxDistance){
-    const xpLevel = 1.09 ** ((maxDistance - distance)/15000);
-    return Math.max(xpLevel * 15, 1);
+  static getMaxProbableShipAmount(distance, maxDistance) {
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 8000);
+    return Math.max(xpLevel * 10, 1);
   }
 
-  static getMaxProbableSuperHeavyShipCount(distance, maxDistance){
-    const xpLevel = 1.09 ** ((maxDistance - distance)/10000);
+  static getMaxProbableHeavyShipCount(distance, maxDistance) {
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 10000);
+    return Math.max(xpLevel * 12, 1);
+  }
+
+  static getMaxProbableSuperHeavyShipCount(distance, maxDistance) {
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 10000);
     return Math.max(xpLevel * 3, 1);
   }
 
-  static getRandomEnemy(){
+  static getRandomEnemy() {
     const rand = Math.random();
-    let enemy = {'type':'','name':'',techs:{'109':0,'110':0,'111':0}};
+    let enemy = {'type': '', 'name': '', techs: {'109': 0, '110': 0, '111': 0}};
 
-    if(rand < 0.3){
+    if (rand < 0.3) {
       enemy.type = 'pirates';
-    } else if(rand < 0.7){
+    } else if (rand < 0.7) {
       enemy.type = 'scourge';
     } else {
       enemy.type = 'quadrant-12';
     }
     enemy.name = EventManager.enemyTypes[enemy.type].name;
     enemy.techs['109'] = EventManager.randomIntFromInterval(
-      EventManager.enemyTypes[enemy.type].minTech,EventManager.enemyTypes[enemy.type].maxTech);
+      EventManager.enemyTypes[enemy.type].minTech, EventManager.enemyTypes[enemy.type].maxTech);
     enemy.techs['110'] = EventManager.randomIntFromInterval(
-      EventManager.enemyTypes[enemy.type].minTech,EventManager.enemyTypes[enemy.type].maxTech);
+      EventManager.enemyTypes[enemy.type].minTech, EventManager.enemyTypes[enemy.type].maxTech);
     enemy.techs['111'] = EventManager.randomIntFromInterval(
-      EventManager.enemyTypes[enemy.type].minTech,EventManager.enemyTypes[enemy.type].maxTech);
+      EventManager.enemyTypes[enemy.type].minTech, EventManager.enemyTypes[enemy.type].maxTech);
     return enemy;
   }
 
-  static getRandomShips(distance, maxDistance, type='battle'){
+  getRandomShips(distance, maxDistance, type = 'battle') {
     let maxProbableShipType, pickableFleet, maxProbableShipTypeCount;
     let maxProbableLightShipTypeCount, maxProbableHeavyShipCount, maxProbableSuperHeavyShipCount;
+    const getProbableShipCount = type => {
+      switch (type) {
+        case types.SUPER_LIGHT:
+          return EventManager.getMaxProbableSuperLightShipAmount(distance, maxDistance);
+        case types.LIGHT:
+          return EventManager.getMaxProbableLightShipAmount(distance, maxDistance);
+        case types.MEDIUM:
+          return EventManager.getMaxProbableShipAmount(distance, maxDistance);
+        case types.HEAVY:
+          return EventManager.getMaxProbableHeavyShipCount(distance, maxDistance);
+        case types.SUPER_HEAVY:
+          return EventManager.getMaxProbableSuperHeavyShipCount(distance, maxDistance);
+      }
+    }
 
-    if(type=='battle'){
+    if (type == 'battle') {
       maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyShips.length, distance, maxDistance);
-      pickableFleet = Fleet.validEnemyShips.slice(0, maxProbableShipType-1);
-      maxProbableLightShipTypeCount = EventManager.getMaxProbableLightShipAmount(distance, maxDistance, 1);
+      pickableFleet = Fleet.validEnemyShips.slice(0, maxProbableShipType - 1);
       maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
-      maxProbableHeavyShipCount = EventManager.getMaxProbableHeavyShipCount(distance, maxDistance, 1);
-      maxProbableSuperHeavyShipCount = EventManager.getMaxProbableSuperHeavyShipCount(distance, maxDistance, 1);
-    }
-    else {
-      if (type === 'add-ships'){
+    } else {
+      if (type === 'add-ships') {
         maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyShips.length, distance, maxDistance);
-        pickableFleet = Fleet.validEnemyShips.slice(0, maxProbableShipType-1);
-        maxProbableLightShipTypeCount = EventManager.getMaxProbableLightShipAmount(distance, maxDistance, 1) / 10;
+        pickableFleet = Fleet.validEnemyShips.slice(0, maxProbableShipType - 1);
         maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1) / 10;
-        maxProbableHeavyShipCount = EventManager.getMaxProbableHeavyShipCount(distance, maxDistance, 1) / 10;
-        maxProbableSuperHeavyShipCount = EventManager.getMaxProbableSuperHeavyShipCount(distance, maxDistance, 1) / 10;
-      }
-      else {
+      } else {
         maxProbableShipType = EventManager.getMaxProbableShipType(Fleet.validEnemyDefense.length, distance, maxDistance);
-        pickableFleet = Fleet.validEnemyDefense.slice(0, maxProbableShipType-1);
-        maxProbableLightShipTypeCount = EventManager.getMaxProbableLightShipAmount(distance, maxDistance, 1);
+        pickableFleet = Fleet.validEnemyDefense.slice(0, maxProbableShipType - 1);
         maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
         maxProbableShipTypeCount = EventManager.getMaxProbableShipTypeCount(distance, maxDistance, 1);
       }
     }
 
-    const minProbableShipTypeCount = Math.max(maxProbableShipTypeCount/3, 1);
-    const maxProbableShipTypeAmount = EventManager.getMaxProbableShipAmount(distance, maxDistance);
-    const minProbableShipTypeAmount = Math.max(maxProbableShipTypeAmount/5, 1);
+    const minProbableShipTypeCount = Math.max(maxProbableShipTypeCount / 3, 1);
 
     let realFleet = {}, idx, pos,
-      max = EventManager.randomIntFromInterval(minProbableShipTypeCount,maxProbableShipTypeCount)+1;
-    for(let i=minProbableShipTypeCount; i < max; i++){
-      pos = Math.random() * pickableFleet.length|0;
+      max = EventManager.randomIntFromInterval(minProbableShipTypeCount, maxProbableShipTypeCount) + 1;
+    for (let i = minProbableShipTypeCount; i < max; i++) {
+      pos = Math.random() * pickableFleet.length | 0;
       idx = pickableFleet[pos];
 
-      if(!realFleet[idx]){
-        if(idx=='407' || idx=='408') {
+      if (!realFleet[idx]) {
+        if (idx == '407' || idx == '408') {
           realFleet[idx] = 1;
         }
-        else if (['202', '203', '204', '205', '206', '401', '402', '403', '405']
-          .some(value => value == idx)){
-          realFleet[idx] = EventManager.randomIntFromInterval(1, maxProbableLightShipTypeCount)
-        }
-        else if (idx == '220'){
-          realFleet[idx] = EventManager.randomIntFromInterval(1, maxProbableHeavyShipCount);
-        }
-        else if (idx == '216' || idx == '214'){
-          realFleet[idx] = EventManager.randomIntFromInterval(0, maxProbableSuperHeavyShipCount);
-        }
         else {
-          realFleet[idx] = EventManager.randomIntFromInterval(minProbableShipTypeAmount, maxProbableShipTypeAmount);
+          let factor = 1;
+          if (idx == '213') {
+            let amDeathStars = Math.min(
+              this.store.playerFleet.shipsExpanded['214'].amount,
+              51
+            );
+            factor = 1.09 ** amDeathStars;
+          }
+          const { type } = shipAmounts[idx];
+          const max = getProbableShipCount(type) * factor;
+          const min = max / 3;
+          realFleet[idx] = EventManager.randomIntFromInterval(min, max);
         }
       }
     }
