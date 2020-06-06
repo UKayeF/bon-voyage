@@ -140,6 +140,7 @@ body {
     margin: 10px;
     background-color: #000;
     position: relative;
+    height: 100%;
     font-family: 'Press Start 2P', cursive;
 }
 
@@ -479,4 +480,12 @@ body {
 
 .purchase-response {
     height: 36px;
+}
+
+.event-actions {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
