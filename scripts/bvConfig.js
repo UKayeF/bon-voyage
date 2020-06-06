@@ -280,7 +280,7 @@ window.bvConfig = {
       'factor': 1,
       'consumption': 0,
       'speed': 100,
-      'capacity': 1000000,
+      'capacity': 100000000,
       'attack': 200000,
       'defense': 50000,
       'hull': 9000000,

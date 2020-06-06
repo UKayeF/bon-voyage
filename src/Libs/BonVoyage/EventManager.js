@@ -576,22 +576,22 @@ export default class EventManager {
   }
 
   static getMaxProbableSuperLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 2000);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 3200);
     return Math.max(xpLevel * 10, 1);
   }
 
   static getMaxProbableLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 4000);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 6400);
     return Math.max(xpLevel * 30, 1);
   }
 
   static getMaxProbableShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 8000);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 6000);
     return Math.max(xpLevel * 10, 1);
   }
 
   static getMaxProbableHeavyShipCount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 10000);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / 8000);
     return Math.max(xpLevel * 12, 1);
   }
 
@@ -673,9 +673,9 @@ export default class EventManager {
           if (idx == '213') {
             let amDeathStars = Math.min(
               this.store.playerFleet.shipsExpanded['214'].amount,
-              51
+              30
             );
-            factor = 1.09 ** amDeathStars;
+            factor = 1.30 ** amDeathStars;
           }
           const { type } = shipAmounts[idx];
           const max = getProbableShipCount(type) * factor;
