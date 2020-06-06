@@ -268,6 +268,16 @@ body {
     width: 100%;
 }
 
+.tbl-active-ships .ship-name-amount {
+    max-width: calc(100% - 48px);
+    display: flex;
+    flex-direction: column;
+}
+
+.tbl-active-ships .img-container {
+    margin: 0 0 0 auto;
+}
+
 .tbl-active-ships span {
     font-size: 8px;
 }
