@@ -6,6 +6,7 @@ import Space from './Model/Space';
 import Fleet from './Model/Fleet';
 import Event from './Model/Event';
 import {shipAmounts, types} from '../../utils/shipAmounts';
+import { scaling } from '../../utils/scaling-constants';
 
 export default class EventManager {
 
@@ -576,28 +577,28 @@ export default class EventManager {
   }
 
   static getMaxProbableSuperLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 3200);
-    return Math.max(xpLevel * 10, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.SUPER_LIGHT.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * scaling.SUPER_LIGHT.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 6400);
-    return Math.max(xpLevel * 30, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.LIGHT.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * scaling.LIGHT.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 6000);
-    return Math.max(xpLevel * 10, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.NORMAL.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * scaling.NORMAL.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableHeavyShipCount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 8000);
-    return Math.max(xpLevel * 12, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.HEAVY.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * scaling.HEAVY.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableSuperHeavyShipCount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 10000);
-    return Math.max(xpLevel * 3, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.SUPER_HEAVY.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * scaling.SUPER_HEAVY.BASELINE_FACTOR, 1);
   }
 
   static getRandomEnemy() {
