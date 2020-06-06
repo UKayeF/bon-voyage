@@ -22,11 +22,13 @@ class ShipListItemComponent extends Component {
     return (
       <div className={(currentAmount || changeAmount) ? 'ship-item' : 'hidden'}>
         <div className='ship-name-amount'>
-        <span className='ship-desc'>
-          {this.props.priceList[x].name}
-        </span>
-          <span className='amount'>{currentAmount}</span>
-          <div>{changes}</div>
+          <span className='ship-desc'>
+            {this.props.priceList[x].name}
+          </span>
+          <div className='ship-battle-amounts'>
+            <span className='amount'>{currentAmount}</span>
+            <span>{changes}</span>
+          </div>
         </div>
         <div className='img-container'>
           <div className={className}></div>

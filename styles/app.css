@@ -145,6 +145,7 @@ body {
 }
 
 #holder > div {
+    min-height: 100%;
     background-color: #000;
     color: #fff;
     box-sizing: border-box;
@@ -273,6 +274,11 @@ body {
     max-width: calc(100% - 48px);
     display: flex;
     flex-direction: column;
+}
+
+.tbl-active-ships .ship-battle-amounts {
+    display: flex;
+    justify-content: space-between;
 }
 
 .tbl-active-ships .img-container {
