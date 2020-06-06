@@ -78,7 +78,7 @@ class MarketComponent extends Component {
             </div>
           </div>
         </div>
-        <div>
+        <div className='purchase-response'>
           <br/>
           <span className={this.success ? 'text-success' : 'hidden'}>Thanks for buying!</span>
           <span className={this.validatingCapacity ? 'text-error' : 'hidden'}>Not enough Tank Capacity!</span>
