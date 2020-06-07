@@ -9,6 +9,8 @@
 }
 
 #gamepad-item button {
+    background-color: black;
+    border: 1px solid #999;
     display: block;
     position: fixed;
     height: 32px;
@@ -16,7 +18,7 @@
 }
 
 #gamepad-item button.pressed {
-    border-color: inherit;
+    border: 1px solid;
 }
 
 #A {
@@ -52,9 +54,6 @@
     background: black;
     width: 0;
     height: 0;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    border-bottom: 32px solid red;
     left: 32px;
     bottom: 64px;
 }
@@ -64,9 +63,6 @@
     background: black;
     width: 0;
     height: 0;
-    border-left: 16px solid transparent;
-    border-right: 16px solid transparent;
-    border-top: 32px solid red;
     left: 32px;
     bottom: 0;
 }
@@ -76,9 +72,6 @@
     background: black;
     width: 0;
     height: 0;
-    border-top: 16px solid transparent;
-    border-bottom: 16px solid transparent;
-    border-right: 32px solid red;
     left: 0;
     bottom: 32px;
 }
@@ -88,9 +81,6 @@
     background: black;
     width: 0;
     height: 0;
-    border-top: 16px solid transparent;
-    border-bottom: 16px solid transparent;
-    border-left: 32px solid red;
     left: 64px;
     bottom: 32px;
 }
