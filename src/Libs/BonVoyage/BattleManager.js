@@ -59,7 +59,7 @@ class BattleManager {
   calcDebrisField(idx, amount, priceList) {
     const {metal, crystal} = priceList[idx];
 
-    return [metal, crystal].map(x => x * amount * DEBRIS_FIELD_PERCENTAGE);
+    return [metal, crystal].map(x => Math.ceil(x * amount * DEBRIS_FIELD_PERCENTAGE));
   }
 
   expand = (stats, rounds) => {
