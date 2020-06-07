@@ -1,5 +1,6 @@
 import Fleet from './Model/Fleet';
 import Battle from '../Ogsim/Battle';
+import { DEBRIS_FIELD_PERCENTAGE } from '../../utils/scaling-constants';
 
 class BattleManager {
 
@@ -56,7 +57,6 @@ class BattleManager {
   }
 
   calcDebrisField(idx, amount, priceList) {
-    const DEBRIS_FIELD_PERCENTAGE = 0.3;
     const {metal, crystal} = priceList[idx];
 
     return [metal, crystal].map(x => x * amount * DEBRIS_FIELD_PERCENTAGE);

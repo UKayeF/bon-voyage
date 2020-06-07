@@ -25,6 +25,8 @@ export const SCALING = {
   }
 }
 
+export const DEBRIS_FIELD_PERCENTAGE = 0.7;
+
 export const INITIAL = {
   METAL: 5000000,
   CRYSTAL: 3000000,
