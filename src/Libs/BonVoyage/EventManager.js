@@ -6,7 +6,7 @@ import Space from './Model/Space';
 import Fleet from './Model/Fleet';
 import Event from './Model/Event';
 import { shipAmounts, types } from '../../utils/shipAmounts';
-import { EVENT_PROBABILITY, REWARDS, SCALING } from '../../utils/scaling-constants';
+import { EVENT_PROBABILITY, REWARDS, SCALING } from '../../utils/constants';
 
 export default class EventManager {
 

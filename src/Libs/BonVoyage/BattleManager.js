@@ -1,6 +1,6 @@
 import Fleet from './Model/Fleet';
 import Battle from '../Ogsim/Battle';
-import { DEBRIS_FIELD_PERCENTAGE } from '../../utils/scaling-constants';
+import { DEBRIS_FIELD_PERCENTAGE } from '../../utils/constants';
 
 class BattleManager {
 

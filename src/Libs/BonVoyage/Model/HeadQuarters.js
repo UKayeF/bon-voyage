@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import { INITIAL } from '../../../utils/scaling-constants';
+import { INITIAL } from '../../../utils/constants';
 
 class HeadQuarters {
 
