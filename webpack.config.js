@@ -47,10 +47,6 @@ module.exports = {
           to: 'background',
         },
         {
-          from: 'spritesheet.jpg',
-          to: 'sprites/spritesheet.jpg',
-        },
-        {
           from: 'img/outer-space-mini.jpg',
           to: 'img/outer-space-mini.jpg',
         },
