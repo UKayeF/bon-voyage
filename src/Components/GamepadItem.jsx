@@ -7,7 +7,6 @@ class GamepadItem extends Component {
 
   render() {
     const gamepad = this.props.gamepad;
-    console.log(gamepad);
     const [A, B, X, Y, LB, RB, LT, RT, BACK, START, LS, RS, UP, DOWN, LEFT, RIGHT] = gamepad.buttons;
     const pressed = ({value}) => value ? 'pressed' : '';
 
