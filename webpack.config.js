@@ -2,21 +2,17 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  //devtool: 'eval',
   entry: [
-    //  'react-hot-loader/patch',
-    //  'webpack-dev-server/client?http://localhost:3000',
-    //  'webpack/hot/only-dev-server',
     './src/index',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/dist/',
+    publicPath: '/',
   },
   plugins: [
     //  new webpack.HotModuleReplacementPlugin(),
@@ -47,10 +43,6 @@ module.exports = {
           to: 'manifest.json',
         },
         {
-          from: 'service-worker.js',
-          to: 'service-worker.js',
-        },
-        {
           from: 'background',
           to: 'background',
         },
@@ -63,6 +55,12 @@ module.exports = {
           to: 'img/outer-space-mini.jpg',
         },
       ],
+    }),
+    new GenerateSW({
+      swDest: 'workbox-sw.js',
+      clientsClaim: true,
+      skipWaiting: true,
+      exclude: [/\.map$/],
     }),
   ],
   resolve: {
