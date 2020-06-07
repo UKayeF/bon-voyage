@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GamepadItem from './GamepadItem';
+import GamepadItem from './GamepadItem.jsx';
 
 class Gamepad extends Component {
   constructor(props) {
@@ -22,11 +22,18 @@ class Gamepad extends Component {
 
   render() {
     const gamepadsSliced = [].slice.call(this.state.gamepads).filter(x => !!x);
+    const [firstGamepad] = gamepadsSliced;
+
     return (
       <div>
         {
           gamepadsSliced.map((gamepad, index) => (
             <GamepadItem gamepad={gamepad} key={index} />
+          ))
+        }
+        {
+          this.props.children.map((Component, index) => (
+            <Component key={index} gamepad={firstGamepad} />
           ))
         }
       </div>

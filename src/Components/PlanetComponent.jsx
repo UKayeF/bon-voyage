@@ -10,7 +10,7 @@ import MarketComponent from './Planet/MarketComponent';
 import ResearchLabComponent from './Planet/ResearchLabComponent';
 
 import GameState from '../Libs/BonVoyage/Model/GameState';
-import ResourceTable from './ResourceTable';
+import ResourceTable from './ResourceTable.jsx';
 
 @observer
 class PlanetComponent extends Component {

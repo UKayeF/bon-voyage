@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {observer} from 'mobx-react';
-import ResourceTable from '../ResourceTable';
+import ResourceTable from '../ResourceTable.jsx';
 
 @observer
 class ResourceListComponent extends Component {

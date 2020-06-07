@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {computed} from 'mobx';
 import {observer} from 'mobx-react';
-import ResourceTable from '../ResourceTable';
+import ResourceTable from '../ResourceTable.jsx';
 
 
 @observer
