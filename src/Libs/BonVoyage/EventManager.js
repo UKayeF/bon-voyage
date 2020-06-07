@@ -1,16 +1,16 @@
-import {action} from 'mobx';
+import { action } from 'mobx';
 
 import GameState from './Model/GameState';
 import ExchangeRate from './ExchangeRate';
 import Space from './Model/Space';
 import Fleet from './Model/Fleet';
 import Event from './Model/Event';
-import {shipAmounts, types} from '../../utils/shipAmounts';
-import { scaling } from '../../utils/scaling-constants';
+import { shipAmounts, types } from '../../utils/shipAmounts';
+import { EVENT_PROBABILITY, REWARDS, SCALING } from '../../utils/scaling-constants';
 
 export default class EventManager {
 
-  static EVENT_PROBABILITY = 0.08;
+  static EVENT_PROBABILITY = EVENT_PROBABILITY;
 
   static types = {
     'supernova': {
@@ -479,16 +479,17 @@ export default class EventManager {
       resources.deuterium = rawShips[idx] * priceList[idx].deuterium;
 
       this.store.enemyFleet.shipsExpanded[idx].amount = rawShips[idx];
-      rewardValue += ExchangeRate.resourcesToSpaceCredits(resources, ExchangeRate.NORMAL);
+      rewardValue += ExchangeRate.resourcesToSpaceCredits(resources, ExchangeRate.NORMAL) * REWARDS.BASELINE_FACTOR;
     }
     switch (type) {
       case 'pirates':
-        rewardValue = rewardValue / 1.25;
+        rewardValue = rewardValue / REWARDS.PIRATE_DIVISOR;
         break;
       case 'scourge':
+        rewardValue = rewardValue / REWARDS.SCOURGE_DIVISOR;
         break;
       case 'quadrant-12':
-        rewardValue = rewardValue / 0.75;
+        rewardValue = rewardValue / REWARDS.QUADRANT_DIVISOR;
         break;
     }
     return rewardValue;
@@ -563,8 +564,8 @@ export default class EventManager {
   }
 
   static getMaxProbableResourceAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / 12000);
-    return Math.max(xpLevel * 70000, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / SCALING.RESOURCES.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * SCALING.RESOURCES.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableShipType(length, distance, maxDistance) {
@@ -577,28 +578,28 @@ export default class EventManager {
   }
 
   static getMaxProbableSuperLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.SUPER_LIGHT.DISTANCE_TO_SCALE);
-    return Math.max(xpLevel * scaling.SUPER_LIGHT.BASELINE_FACTOR, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / SCALING.SUPER_LIGHT.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * SCALING.SUPER_LIGHT.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableLightShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.LIGHT.DISTANCE_TO_SCALE);
-    return Math.max(xpLevel * scaling.LIGHT.BASELINE_FACTOR, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / SCALING.LIGHT.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * SCALING.LIGHT.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableShipAmount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.NORMAL.DISTANCE_TO_SCALE);
-    return Math.max(xpLevel * scaling.NORMAL.BASELINE_FACTOR, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / SCALING.NORMAL.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * SCALING.NORMAL.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableHeavyShipCount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.HEAVY.DISTANCE_TO_SCALE);
-    return Math.max(xpLevel * scaling.HEAVY.BASELINE_FACTOR, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / SCALING.HEAVY.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * SCALING.HEAVY.BASELINE_FACTOR, 1);
   }
 
   static getMaxProbableSuperHeavyShipCount(distance, maxDistance) {
-    const xpLevel = 1.09 ** ((maxDistance - distance) / scaling.SUPER_HEAVY.DISTANCE_TO_SCALE);
-    return Math.max(xpLevel * scaling.SUPER_HEAVY.BASELINE_FACTOR, 1);
+    const xpLevel = 1.09 ** ((maxDistance - distance) / SCALING.SUPER_HEAVY.DISTANCE_TO_SCALE);
+    return Math.max(xpLevel * SCALING.SUPER_HEAVY.BASELINE_FACTOR, 1);
   }
 
   static getRandomEnemy() {
@@ -624,7 +625,6 @@ export default class EventManager {
 
   getRandomShips(distance, maxDistance, type = 'battle') {
     let maxProbableShipType, pickableFleet, maxProbableShipTypeCount;
-    let maxProbableLightShipTypeCount, maxProbableHeavyShipCount, maxProbableSuperHeavyShipCount;
     const getProbableShipCount = type => {
       switch (type) {
         case types.SUPER_LIGHT:

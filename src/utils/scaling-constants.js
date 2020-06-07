@@ -1,4 +1,4 @@
-export const scaling = {
+export const SCALING = {
   SUPER_LIGHT: {
     DISTANCE_TO_SCALE: 3200,
     BASELINE_FACTOR: 10,
@@ -18,5 +18,18 @@ export const scaling = {
   SUPER_HEAVY: {
     DISTANCE_TO_SCALE: 10000,
     BASELINE_FACTOR: 3,
+  },
+  RESOURCES: {
+    DISTANCE_TO_SCALE: 12000,
+    BASELINE_FACTOR: 70000,
   }
 }
+
+export const REWARDS = {
+  BASELINE_FACTOR: 0.3,
+  PIRATE_DIVISOR: 1.25,
+  SCOURGE_DIVISOR: 1,
+  QUADRANT_DIVISOR: 0.75,
+};
+
+export const EVENT_PROBABILITY = 0.08;
