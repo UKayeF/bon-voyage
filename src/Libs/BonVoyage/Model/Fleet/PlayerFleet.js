@@ -78,18 +78,18 @@ class PlayerFleet extends Fleet {
       remaining -= resources.deuterium;
       spentResources.deuterium = resources.deuterium;
 
-      if(remaining > resources.metal){
-        remaining -= resources.metal;
-        spentResources.metal = resources.metal;
+      if(remaining > resources.crystal){
+        remaining -= resources.crystal;
+        spentResources.crystal = resources.crystal;
 
-        if(remaining > resources.crystal){
+        if(remaining > resources.metal){
           //We don't have to substract anymore
-          spentResources.crystal = resources.crystal;
+          spentResources.metal = resources.metal;
         } else {
-          spentResources.crystal = remaining;
+          spentResources.metal = remaining;
         }
       } else {
-        spentResources.metal = remaining;
+        spentResources.crystal = remaining;
       }
     } else {
       spentResources.deuterium = remaining;
