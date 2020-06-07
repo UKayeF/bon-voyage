@@ -10,7 +10,7 @@
 
 #gamepad-item button {
     display: block;
-    position: absolute;
+    position: fixed;
     height: 32px;
     width: 32px;
 }
