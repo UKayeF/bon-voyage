@@ -1,10 +1,11 @@
 import { observable, action } from 'mobx';
+import { INITIAL } from '../../../utils/scaling-constants';
 
 class HeadQuarters {
 
-    static defaultMetal = 8000000;
-    static defaultCrystal = 4000000;
-    static defaultDeuterium = 2400001;
+    static defaultMetal = INITIAL.METAL;
+    static defaultCrystal = INITIAL.CRYSTAL;
+    static defaultDeuterium = INITIAL.DEUTERIUM;
 
     @observable metal = 0;
     @observable crystal = 0;

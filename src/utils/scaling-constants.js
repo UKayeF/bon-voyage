@@ -25,6 +25,12 @@ export const SCALING = {
   }
 }
 
+export const INITIAL = {
+  METAL: 500000,
+  CRYSTAL: 300000,
+  DEUTERIUM: 150000,
+}
+
 export const REWARDS = {
   BASELINE_FACTOR: 0.3,
   PIRATE_DIVISOR: 1.25,
