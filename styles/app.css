@@ -293,6 +293,7 @@ body {
 .tbl-active-ships .ship-battle-amounts {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .tbl-active-ships .img-container {
