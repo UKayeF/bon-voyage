@@ -53,6 +53,7 @@ module.exports = {
       ],
     }),
     new GenerateSW({
+      maximumFileSizeToCacheInBytes: 4 * 1000 * 1000,
       swDest: 'workbox-sw.js',
       clientsClaim: true,
       skipWaiting: true,
