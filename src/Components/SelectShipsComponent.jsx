@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {observable, action, computed} from 'mobx';
-import {observer} from 'mobx-react';
+import React, { Component } from 'react';
+import { action, computed, observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 import ResourceListComponent from './Ships/ResourceListComponent';
 import SelectorComponent from './Ships/SelectorComponent';
@@ -20,6 +20,7 @@ class SelectShipsComponent extends Component {
   };
 
   render() {
+    const { gamepad: { buttons = [] } = [] } = this.props;
 
     return (
       <div className={this.props.visibility ? '' : 'hidden'}>
