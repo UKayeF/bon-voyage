@@ -11,9 +11,10 @@ class SelectorItemComponent extends Component {
     const shipName = makeCSSName(shipsToCode.get(parseInt(shipId)));
     const iconType = getIconType(parseInt(shipId));
     const className = `img ${iconType} ${shipName}`
+    const selected = this.props.selected ? 'selected' : '';
 
     return (
-      <div className='selector-item'>
+      <div className={`selector-item ${selected}`}>
         <div className='container-fluid ship-label'>
           <div className='row'>
             <span className="name">{this.props.shipData.name}</span>
@@ -21,12 +22,20 @@ class SelectorItemComponent extends Component {
         </div>
         <div className='container-fluid'>
           <div className='row flex-row'>
+            {this.props.previousAction ?
+              (<button onClick={this.props.previousAction} className='previous text-error'>«</button>) :
+              null
+            }
             <div className={className}></div>
             <span className="text-info">{this.props.shipsExpanded[shipId].amount}</span>
             <button className="text-info" onClick={this.addOne}>+1</button>
             <button className="text-info" onClick={this.addTen}>+10</button>
             <button className="text-error" onClick={this.minusOne}>-1</button>
             <button className="text-error" onClick={this.minusTen}>-10</button>
+            {this.props.nextAction ?
+              (<button onClick={this.props.nextAction} className='next text-error'>»</button>) :
+              null
+            }
           </div>
         </div>
       </div>

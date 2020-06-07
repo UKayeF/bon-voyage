@@ -13,4 +13,22 @@
         bottom: 8px;
         width: 100%;
     }
+
+    .flex-container > .selector-item {
+        display: none;
+    }
+    .flex-container > .selector-item.selected {
+        display: block;
+    }
+    .previous {
+        margin: 0 auto 0 0;
+    }
+    .next {
+        margin: 0 0 0 auto;
+    }
+    .flex-row > div.img {
+        margin: 0 0 0 auto;
+    }
+
+
 }
