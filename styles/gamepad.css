@@ -1,0 +1,96 @@
+#gamepad-item.hidden {
+    display: none;
+}
+#gamepad-item {
+    position: absolute;
+    z-index: 999999999;
+    width: calc(100vw - 64px);
+    height: calc(100vh - 48px);
+}
+
+#gamepad-item button {
+    display: block;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+}
+
+#gamepad-item button.pressed {
+    border-color: inherit;
+}
+
+#A {
+    color: #5c8a00;
+    bottom: 0;
+    right: 32px;
+    border-radius: 50%;
+}
+
+#B {
+    color: #993333;
+    bottom: 32px;
+    right: 0px;
+    border-radius: 50%;
+}
+
+#X {
+    color: #0e90d2;
+    bottom: 32px;
+    right: 64px;
+    border-radius: 50%;
+}
+
+#Y {
+    color: #dbb320;
+    bottom: 64px;
+    right: 32px;
+    border-radius: 50%;
+}
+
+#UP {
+    color: #fafafa;
+    background: black;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-bottom: 32px solid red;
+    left: 32px;
+    bottom: 64px;
+}
+
+#DOWN {
+    color: #fafafa;
+    background: black;
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 32px solid red;
+    left: 32px;
+    bottom: 0;
+}
+
+#LEFT {
+    color: #fafafa;
+    background: black;
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-right: 32px solid red;
+    left: 0;
+    bottom: 32px;
+}
+
+#RIGHT {
+    color: #fafafa;
+    background: black;
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left: 32px solid red;
+    left: 64px;
+    bottom: 32px;
+}

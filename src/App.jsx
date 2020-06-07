@@ -13,6 +13,7 @@ import EventComponent from './Components/EventComponent';
 import GameState from './Libs/BonVoyage/Model/GameState';
 
 import DebugBar from './Components/Debug/DebugBar';
+import Gamepad from './Components/Gamepad';
 
 @observer
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
         return (
         <div>
             <div id="holder">
+                <Gamepad />
                 <HomeComponent visibility={visibility.home} store={store} />
                 <SelectShipsComponent priceList={window.bvConfig.shipData} headQuarters={store.headQuarters}
                                       visibility={visibility.ships} store={store} />
