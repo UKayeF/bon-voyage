@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { DEBUG } from '../utils/constants';
 
 class GamepadItem extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class GamepadItem extends Component {
     const pressed = ({value}) => value ? 'pressed' : '';
 
     return (
-      <div id='gamepad-item'>
+      <div id='gamepad-item' className={DEBUG ? '' : 'hidden'}>
         <button id='A' className={pressed(A)}>A</button>
         <button id='B' className={pressed(B)}>B</button>
         <button id='X' className={pressed(X)}>X</button>

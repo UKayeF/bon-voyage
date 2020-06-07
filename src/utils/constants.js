@@ -1,3 +1,4 @@
+export const DEBUG = false;
 export const SCALING = {
   SUPER_LIGHT: {
     DISTANCE_TO_SCALE: 3200,
