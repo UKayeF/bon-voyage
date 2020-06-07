@@ -4,6 +4,25 @@ import {getIconType, makeCSSName, shipsToCode} from '../../utils/shipCodeMap';
 
 @observer
 class SelectorItemComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dispatching: false,
+    }
+  }
+
+  handleButtonActions = ({name}) => {
+    if (this.state.dispatching) return;
+    this.setState({dispatching: true}, () => {
+      switch (name) {
+        case 'RB': this.minusOne(); break;
+        case 'RT': this.minusTen(); break;
+        case 'LB': this.addOne(); break;
+        case 'LT': this.addTen(); break;
+      }
+      setTimeout(() => this.setState({dispatching: false}), 200)
+    })
+  }
 
   render() {
     const shipId = this.props.shipId;
@@ -12,6 +31,8 @@ class SelectorItemComponent extends Component {
     const iconType = getIconType(parseInt(shipId));
     const className = `img ${iconType} ${shipName}`
     const selected = this.props.selected ? 'selected' : '';
+    const { buttonAction } = this.props;
+    if (buttonAction && selected) this.handleButtonActions(buttonAction);
 
     return (
       <div className={`selector-item ${selected}`}>

@@ -4,9 +4,18 @@ import { observer } from 'mobx-react';
 
 import ResourceListComponent from './Ships/ResourceListComponent';
 import SelectorComponent from './Ships/SelectorComponent';
+import { handleButtonPress } from '../utils/handleButtonPress';
 
 @observer
 class SelectShipsComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttonAction: null,
+      isDispatching: false,
+    }
+  }
+
 
   @observable validating = false;
   @observable validatingResources = false;
@@ -18,9 +27,18 @@ class SelectShipsComponent extends Component {
   @computed get watchNoDeuteriumClass() {
     return (this.validating && !this.props.headQuarters.deuterium) ? 'text-error-pull-left' : 'hidden';
   };
+  handleButtonActions = (action) => {
+    if (this.state.isDispatching) return;
+    this.setState({
+      buttonAction: action,
+      isDispatching: true,
+    })
+    window.setTimeout(() => this.setState({isDispatching: false}), 200);
+  }
 
   render() {
     const { gamepad: { buttons = [] } = [] } = this.props;
+    handleButtonPress(buttons, this.handleButtonActions);
 
     return (
       <div className={this.props.visibility ? '' : 'hidden'}>
@@ -28,11 +46,17 @@ class SelectShipsComponent extends Component {
         <p>Prepare yourself for the mission. Perhaps you want certain ships for your needs?<br/>
           We will give you the remaining resources afterwards, if you have enough capacity available. Watch out on the
           deuterium consumption.</p>
-        <ResourceListComponent headQuarters={this.props.headQuarters}
-                               playerFleet={this.props.store.playerFleet}
-                               module="ships" store={this.props.store}/>
-        <SelectorComponent fleet={this.props.store.playerFleet} tryToAlterShipCount={this.tryToAlterShipCount}
-                           priceList={this.props.priceList}/>
+        <ResourceListComponent
+          headQuarters={this.props.headQuarters}
+          playerFleet={this.props.store.playerFleet}
+          module="ships" store={this.props.store}
+        />
+        <SelectorComponent
+          fleet={this.props.store.playerFleet}
+          tryToAlterShipCount={this.tryToAlterShipCount}
+          priceList={this.props.priceList}
+          buttonAction={this.state.buttonAction}
+        />
         <div className="clear"></div>
         <div className="text-center">
           <button onClick={this.resetShipStore} className="text-warning">» RESET</button>

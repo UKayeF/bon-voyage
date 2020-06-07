@@ -29,6 +29,7 @@ class SelectorComponent extends Component {
       <div className='flex-container'>
         {this.validShipIds.map((ship, index, list) =>
           <SelectorItemComponent
+            buttonAction={this.props.buttonAction}
             shipsExpanded={this.props.fleet.shipsExpanded}
             tryToAlterShipCount={this.props.tryToAlterShipCount}
             selected={index === this.state.selectedIndex}
