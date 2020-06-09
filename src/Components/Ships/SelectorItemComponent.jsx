@@ -11,6 +11,14 @@ class SelectorItemComponent extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.buttonAction !== prevProps.buttonAction){
+      if (this.props.selected){
+        this.handleButtonActions(this.props.buttonAction);
+      }
+    }
+  }
+
   handleButtonActions = ({name}) => {
     if (this.state.dispatching) return;
     this.setState({dispatching: true}, () => {
