@@ -5,8 +5,8 @@ import Fleet from '../../Libs/BonVoyage/Model/Fleet';
 
 class SelectorComponent extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       selectedIndex: 0
     };
