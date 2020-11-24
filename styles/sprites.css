@@ -185,31 +185,23 @@
 .ships.super-destroyer {
     background-image: url('../sprites/220.gif');
     background-repeat: no-repeat;
-    height: var(--img_sm-size);
-    width: var(--img_sm-size);
-    background-size: var(--img_sm-size) var(--img_sm-size);
+    background-position-y: 0;
 }
 
 .ships.lune-noire {
     background-image: url('../sprites/216.gif');
     background-repeat: no-repeat;
-    height: var(--img_sm-size);
-    width: var(--img_sm-size);
-    background-size: var(--img_sm-size) var(--img_sm-size);
+    background-position-y: 0;
 }
 
 .ships.aurora {
     background-image: url('../sprites/219.gif');
     background-repeat: no-repeat;
-    height: var(--img_sm-size);
-    width: var(--img_sm-size);
-    background-size: var(--img_sm-size) var(--img_sm-size);
+    background-position-y: 0;
 }
 
 .ships.star-destroyer {
     background-image: url('../sprites/218.gif');
     background-repeat: no-repeat;
-    height: var(--img_sm-size);
-    width: var(--img_sm-size);
-    background-size: var(--img_sm-size) var(--img_sm-size);
+    background-position-y: 0;
 }
