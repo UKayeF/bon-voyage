@@ -55,7 +55,7 @@
     background-position-x: calc(var(--img_xs-size) * -15);
 }
 
- .resource-img {
+.resource-img {
     background-image: url('../sprites/resource-sprites.png');
     background-repeat: no-repeat;
     height: var(--img_sm-size);
@@ -68,7 +68,7 @@
     background-position-y: calc(var(--img_sm-size) * -2);
 }
 
-.resource-img.crystal{
+.resource-img.crystal {
     background-position-x: calc(var(--img_sm-size) * -1);
 }
 
@@ -180,4 +180,36 @@
 
 .reaper {
     background-position-x: calc(var(--image-width) * -16);
+}
+
+.ships.super-destroyer {
+    background-image: url('../sprites/220.gif');
+    background-repeat: no-repeat;
+    height: var(--img_sm-size);
+    width: var(--img_sm-size);
+    background-size: var(--img_sm-size) var(--img_sm-size);
+}
+
+.ships.lune-noire {
+    background-image: url('../sprites/216.gif');
+    background-repeat: no-repeat;
+    height: var(--img_sm-size);
+    width: var(--img_sm-size);
+    background-size: var(--img_sm-size) var(--img_sm-size);
+}
+
+.ships.aurora {
+    background-image: url('../sprites/219.gif');
+    background-repeat: no-repeat;
+    height: var(--img_sm-size);
+    width: var(--img_sm-size);
+    background-size: var(--img_sm-size) var(--img_sm-size);
+}
+
+.ships.star-destroyer {
+    background-image: url('../sprites/218.gif');
+    background-repeat: no-repeat;
+    height: var(--img_sm-size);
+    width: var(--img_sm-size);
+    background-size: var(--img_sm-size) var(--img_sm-size);
 }
