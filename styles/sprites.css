@@ -184,24 +184,40 @@
 
 .ships.super-destroyer {
     background-image: url('../sprites/220.gif');
+    background-size: var(--image-width) var(--image-width);
     background-repeat: no-repeat;
     background-position-y: 0;
 }
+.ships.super-destroyer.small {
+     background-size: var(--img_xs-size) var(--img_xs-size);
+ }
 
 .ships.lune-noire {
     background-image: url('../sprites/216.gif');
+    background-size: var(--image-width) var(--image-width);
     background-repeat: no-repeat;
     background-position-y: 0;
+}
+.ships.lune-noire.small {
+    background-size: var(--img_xs-size) var(--img_xs-size);
 }
 
 .ships.aurora {
     background-image: url('../sprites/219.gif');
+    background-size: var(--image-width) var(--image-width);
     background-repeat: no-repeat;
     background-position-y: 0;
+}
+.ships.aurora.small {
+    background-size: var(--img_xs-size) var(--img_xs-size);
 }
 
 .ships.star-destroyer {
     background-image: url('../sprites/218.gif');
+    background-size: var(--image-width) var(--image-width);
     background-repeat: no-repeat;
     background-position-y: 0;
+}
+.ships.star-destroyer.small {
+    background-size: var(--img_xs-size) var(--img_xs-size);
 }
