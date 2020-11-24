@@ -1,12 +1,12 @@
-import { action } from 'mobx';
+import {action} from 'mobx';
 
 import GameState from './Model/GameState';
 import ExchangeRate from './ExchangeRate';
 import Space from './Model/Space';
 import Fleet from './Model/Fleet';
 import Event from './Model/Event';
-import { shipAmounts, types } from '../../utils/shipAmounts';
-import { EVENT_PROBABILITY, REWARDS, SCALING } from '../../utils/scaling-constants';
+import {shipAmounts, types} from '../../utils/shipAmounts';
+import {EVENT_PROBABILITY, REWARDS, SCALING} from '../../utils/scaling-constants';
 
 export default class EventManager {
 
@@ -668,17 +668,20 @@ export default class EventManager {
       if (!realFleet[idx]) {
         if (idx == '407' || idx == '408') {
           realFleet[idx] = 1;
-        }
-        else {
+        } else {
           let factor = 1;
           if (idx == '213') {
             let amDeathStars = Math.min(
-              this.store.playerFleet.shipsExpanded['214'].amount,
+              (
+                this.store.playerFleet.shipsExpanded['214'].amount +
+                this.store.playerFleet.shipsExpanded['216'].amount +
+                this.store.playerFleet.shipsExpanded['219'].amount
+              ),
               30
             );
             factor = 1.30 ** amDeathStars;
           }
-          const { type } = shipAmounts[idx];
+          const {type} = shipAmounts[idx];
           const max = getProbableShipCount(type) * factor;
           const min = max / 3;
           realFleet[idx] = EventManager.randomIntFromInterval(min, max);

@@ -98,7 +98,8 @@ class BattleManager {
     const event = this.store.currentEvent;
     const reaperCapacity = this.store.playerFleet.shipsExpanded['221'].amount * 10E3;
     const pathfinderCapacity = this.store.playerFleet.shipsExpanded['222'].amount * 10E3;
-    const totalCapacity = reaperCapacity + pathfinderCapacity;
+    const luneNoireCapacity = this.store.playerFleet.shipsExpanded['216'].amount * 7.5E5;
+    const totalCapacity = reaperCapacity + pathfinderCapacity + luneNoireCapacity;
     const harvestedCrystal = Math.min(totalCapacity, debrisCrystal);
     const remainingCapacity = Math.max(totalCapacity - harvestedCrystal, 0);
     const harvestedMetal = Math.min(remainingCapacity, debrisMetal);
