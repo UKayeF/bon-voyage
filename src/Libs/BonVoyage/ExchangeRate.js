@@ -16,8 +16,8 @@ class ExchangeRate {
 
         switch(exchangeRate){
             case ExchangeRate.NORMAL:
-                metalTradeValue = 3;
-                crystalTradeValue = 2;
+                metalTradeValue = 500/250;
+                crystalTradeValue = 500/333;
                 break;
 
             case ExchangeRate.MEDIUM:
