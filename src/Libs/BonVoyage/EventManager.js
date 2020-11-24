@@ -512,19 +512,19 @@ export default class EventManager {
         return 'add-space-credits';
       } // 12%
     } else {
-      if (rn < 0.005) {
+      if (rn < 0.002) {
         return 'supernova';
       } // 1%
-      if (rn < 0.01) {
+      if (rn < 0.006) {
         return 'black-hole';
       } // 1%
-      if (rn < 0.06) {
+      if (rn < 0.04) {
         return 'remove-ships';
       } // 4%
-      if (rn < 0.11) {
+      if (rn < 0.07) {
         return 'remove-space-credits';
       } // 5%
-      if (rn < 0.16) {
+      if (rn < 0.11) {
         return 'remove-resource';
       } // 5%
       if (rn < 0.21) {
