@@ -678,9 +678,11 @@ export default class EventManager {
         } else {
           let factor = 1;
           if (idx == '213') {
-            factor = 1.30 ** amDeathStars;
+            factor = 1.25 ** amDeathStars;
           }
-          factor = 1.09 ** amDeathStars;
+          else {
+            factor = 1.09 ** amDeathStars;
+          }
           const {type} = shipAmounts[idx];
           const max = getProbableShipCount(type) * factor;
           const min = max / 3;
