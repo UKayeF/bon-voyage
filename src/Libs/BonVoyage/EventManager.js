@@ -672,13 +672,20 @@ export default class EventManager {
         ),
         30
       );
+      let amStarDestroyers = this.store.playerFleet.shipsExpanded['218'].amount;
       if (!realFleet[idx]) {
         if (idx == '407' || idx == '408') {
           realFleet[idx] = 1;
         } else {
           let factor = 1;
           if (idx == '213') {
-            factor = 1.20 ** amDeathStars;
+            if (amStarDestroyers){
+              idx = '220';
+              factor = 1.15 ** amDeathStars;
+            }
+            else {
+              factor = 1.20 ** amDeathStars;
+            }
           }
           else {
             factor = 1.09 ** amDeathStars;
