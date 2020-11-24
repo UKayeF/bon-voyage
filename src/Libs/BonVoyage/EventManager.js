@@ -664,23 +664,23 @@ export default class EventManager {
     for (let i = minProbableShipTypeCount; i < max; i++) {
       pos = Math.random() * pickableFleet.length | 0;
       idx = pickableFleet[pos];
-
+      let amDeathStars = Math.min(
+        (
+          this.store.playerFleet.shipsExpanded['214'].amount +
+          this.store.playerFleet.shipsExpanded['216'].amount +
+          this.store.playerFleet.shipsExpanded['219'].amount
+        ),
+        30
+      );
       if (!realFleet[idx]) {
         if (idx == '407' || idx == '408') {
           realFleet[idx] = 1;
         } else {
           let factor = 1;
           if (idx == '213') {
-            let amDeathStars = Math.min(
-              (
-                this.store.playerFleet.shipsExpanded['214'].amount +
-                this.store.playerFleet.shipsExpanded['216'].amount +
-                this.store.playerFleet.shipsExpanded['219'].amount
-              ),
-              30
-            );
             factor = 1.30 ** amDeathStars;
           }
+          factor = 1.09 ** amDeathStars;
           const {type} = shipAmounts[idx];
           const max = getProbableShipCount(type) * factor;
           const min = max / 3;
