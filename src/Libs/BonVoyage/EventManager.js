@@ -678,7 +678,7 @@ export default class EventManager {
         } else {
           let factor = 1;
           if (idx == '213') {
-            factor = 1.27 ** amDeathStars;
+            factor = 1.20 ** amDeathStars;
           }
           else {
             factor = 1.09 ** amDeathStars;
