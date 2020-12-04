@@ -180,7 +180,7 @@ export default class EventManager {
     this.store = store;
   }
 
-  @action init(type, params) {
+  @action init(type = 'nothing', params) {
     let event = this.store.currentEvent, resource_name, item, amount, result, idx, ship_type,
       descriptions, description, rawShips, enemy, priceList = window.bvConfig.shipData;
     event.metal = 0;
@@ -670,7 +670,7 @@ export default class EventManager {
           this.store.playerFleet.shipsExpanded['216'].amount +
           this.store.playerFleet.shipsExpanded['219'].amount
         ),
-        30
+        25
       );
       let amStarDestroyers = this.store.playerFleet.shipsExpanded['218'].amount;
       if (!realFleet[idx]) {
